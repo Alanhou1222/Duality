@@ -156,6 +156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playMoveSpeed: 5
   rb: {fileID: 451088367}
+  cam: {fileID: 1709466831}
 --- !u!50 &451088367
 Rigidbody2D:
   serializedVersion: 4
