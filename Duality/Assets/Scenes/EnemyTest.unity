@@ -220,10 +220,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93bac8c32e788402abcca77bb3a6d26e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
-  stoppingDistance: 8
-  retreatDistance: 4
-  startTimeBetweenShots: 1.5
+  speed: 10
+  stoppingDistance: 20
+  retreatDistance: 10
+  startTimeBetweenShots: 0
   projectile: {fileID: 644556240816556492, guid: 8c68ded6f936142c38c8d6d97a6625a6, type: 3}
   player: {fileID: 0}
 --- !u!1 &926379069
@@ -364,6 +364,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playMoveSpeed: 5
   rb: {fileID: 926379073}
+  cam: {fileID: 0}
 --- !u!1 &1482001321
 GameObject:
   m_ObjectHideFlags: 0
