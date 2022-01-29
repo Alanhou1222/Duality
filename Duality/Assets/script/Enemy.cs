@@ -22,6 +22,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] float enemyRetreatDistance = 10f;
 
     [SerializeField] EnemyType enemyType = EnemyType.Medieval;
+    bool isSameTypeAsPlayer = true;
     int playerType = 1;
 
     private float timeBetweenShots;
@@ -33,6 +34,9 @@ public class Enemy : MonoBehaviour
 
     // Get all enemies
     GameObject[] allEnemies;
+
+    // Target enemy
+    GameObject enemy;
 
     // Start is called before the first frame update
     void Start()
@@ -51,14 +55,17 @@ public class Enemy : MonoBehaviour
 
         // if playerType is the same as enemyType, they are allies
         // otherwise they are enemies
-        if (playerType == 0 && enemyType == EnemyType.Medieval || playerType == 1 && enemyType == EnemyType.Cyberpunk)
+        if ((playerType == 0 && enemyType == EnemyType.Medieval) || (playerType == 1 && enemyType == EnemyType.Cyberpunk))
         {
+            isSameTypeAsPlayer = true;
+
             allEnemies = GameObject.FindGameObjectsWithTag("Enemy");
-            GameObject enemy = getClosestEnemy(allEnemies);
+            enemy = getClosestEnemy(allEnemies);
 
             // No nearest enemy available
             if (enemy == null)
             {
+                Debug.Log("no enemy");
                 // don't do anything 
             }
 
@@ -82,7 +89,8 @@ public class Enemy : MonoBehaviour
             
         }
         else
-        { 
+        {
+            isSameTypeAsPlayer = false;
 
             if (Vector2.Distance(transform.position, player.position) > enemyStoppingDistance)
             {
@@ -102,7 +110,21 @@ public class Enemy : MonoBehaviour
 
         if (timeBetweenShots <= 0)
         {
+            Transform target;
+
+            if (isSameTypeAsPlayer)
+            {
+                target = enemy.transform;
+            }
+            else
+            {
+                target = player;
+            }
+
+            Debug.Log(target.position.x + " " + target.position.y);
+
             Instantiate(projectile, transform.position, Quaternion.identity);
+            projectile.GetComponent<Projectile>().setTarget(target);
             timeBetweenShots = startTimeBetweenShots;
         }
         else
@@ -160,6 +182,11 @@ public class Enemy : MonoBehaviour
         }
 
         return bestTarget;
+    }
+
+    GameObject getCurrentEnemy()
+    {
+        return enemy;
     }
 }
 
