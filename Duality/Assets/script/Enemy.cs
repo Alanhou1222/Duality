@@ -11,32 +11,43 @@ public class Enemy : MonoBehaviour
         Cyberpunk
     }
 
+    [Header("AllySpeed")]
     // The attributes for an ally
     [SerializeField] float allySpeed = 10f;
     [SerializeField] float allyStoppingDistance = 20f;
     [SerializeField] float allyRetreatDistance = 10f;
 
+    [Header("EnemySpeed")]
     // The attributes for an enemy
     [SerializeField] float enemySpeed = 10f;
     [SerializeField] float enemyStoppingDistance = 20f;
     [SerializeField] float enemyRetreatDistance = 10f;
 
+    [Header("EnemyType")]
     [SerializeField] EnemyType enemyType = EnemyType.Medieval;
     bool isSameTypeAsPlayer = true;
     int playerType = 1;
 
+    [Header("Projectile")]
+    [SerializeField] GameObject enemyProjectile;
+    [SerializeField] GameObject allyProjectile;
+
     private float timeBetweenShots;
     [SerializeField] float startTimeBetweenShots;
 
-    [SerializeField] GameObject projectile;
+    [Header("Health bar")]
+    [SerializeField] GameObject medievalHealthBar;
+    [SerializeField] GameObject cyberHealthBar;
 
-    [SerializeField] Transform player;
+    Transform player;
 
     // Get all enemies
     GameObject[] allEnemies;
 
     // Target enemy
     GameObject enemy;
+
+    private float enemyHealth = 100f;
 
     // Start is called before the first frame update
     void Start()
@@ -110,22 +121,21 @@ public class Enemy : MonoBehaviour
 
         if (timeBetweenShots <= 0)
         {
-            Transform target;
 
             if (isSameTypeAsPlayer)
             {
-                target = enemy.transform;
+                GameObject projectile = Instantiate(allyProjectile, transform.position, Quaternion.identity);
+                projectile.GetComponent<Projectile>().setTarget(enemy.transform);
             }
             else
             {
-                target = player;
+                Instantiate(enemyProjectile, transform.position, Quaternion.identity);
             }
 
-            Debug.Log(target.position.x + " " + target.position.y);
-
-            Instantiate(projectile, transform.position, Quaternion.identity);
-            projectile.GetComponent<Projectile>().setTarget(target);
             timeBetweenShots = startTimeBetweenShots;
+
+            // if enemy is null
+
         }
         else
         {

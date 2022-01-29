@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 644556240816556489}
   - component: {fileID: 644556240816556490}
   - component: {fileID: 644556240816556491}
-  - component: {fileID: 1720030319}
+  - component: {fileID: 821156842046253744}
   m_Layer: 0
-  m_Name: Projectile
+  m_Name: AllyProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -102,7 +102,7 @@ CircleCollider2D:
   m_Offset: {x: -0.001306355, y: -0.000000059604645}
   serializedVersion: 2
   m_Radius: 0.52482146
---- !u!114 &1720030319
+--- !u!114 &821156842046253744
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -111,7 +111,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 644556240816556492}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73398de9428e04f029bc5228d68a62c4, type: 3}
+  m_Script: {fileID: 11500000, guid: 530260fca717a4e81a0fddbacf156826, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 2
+  allyAttack: 5

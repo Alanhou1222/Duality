@@ -105,9 +105,11 @@ MonoBehaviour:
   enemyStoppingDistance: 4
   enemyRetreatDistance: 2
   enemyType: 0
+  enemyProjectile: {fileID: 644556240816556492, guid: 8c68ded6f936142c38c8d6d97a6625a6, type: 3}
+  allyProjectile: {fileID: 644556240816556492, guid: 2155da341b29c46c9b5286a6085979f1, type: 3}
   startTimeBetweenShots: 1.5
-  projectile: {fileID: 644556240816556492, guid: 8c68ded6f936142c38c8d6d97a6625a6, type: 3}
-  player: {fileID: 0}
+  medievalHealthBar: {fileID: 0}
+  cyberHealthBar: {fileID: 0}
 --- !u!61 &-1553226933400130093
 BoxCollider2D:
   m_ObjectHideFlags: 0

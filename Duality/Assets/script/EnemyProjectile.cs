@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class EnemyProjectile : MonoBehaviour
 {
 
     [SerializeField] float speed;
@@ -12,11 +12,14 @@ public class Projectile : MonoBehaviour
     private Vector2 target;
     private bool isEnemy = false;
 
-    [SerializeField] float allyAttack = 5f;
+    [SerializeField] float enemyAttack = 10f;
 
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+
+        target = new Vector2(player.position.x, player.position.y);
 
     }
 
@@ -33,8 +36,9 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy")) {
-            // enemy lose health
+        if (collision.CompareTag("Player"))
+        {
+
         }
         DestroyProjectile();
     }
@@ -42,10 +46,5 @@ public class Projectile : MonoBehaviour
     private void DestroyProjectile()
     {
         Destroy(gameObject);
-    }
-
-    public void setTarget(Transform obj)
-    {
-        target = new Vector2(obj.position.x, obj.position.y);
     }
 }
