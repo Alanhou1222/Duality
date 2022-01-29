@@ -57,7 +57,7 @@ public class Enemy : MonoBehaviour
             GameObject enemy = getClosestEnemy(allEnemies);
 
             // No nearest enemy available
-            if (e == null)
+            if (enemy == null)
             {
                 // don't do anything 
             }
@@ -79,10 +79,10 @@ public class Enemy : MonoBehaviour
                     transform.position = Vector2.MoveTowards(transform.position, enemy.transform.position, -allySpeed * Time.deltaTime);
                 }
             }
-
+            
         }
         else
-        {
+        { 
 
             if (Vector2.Distance(transform.position, player.position) > enemyStoppingDistance)
             {
@@ -144,8 +144,7 @@ public class Enemy : MonoBehaviour
             // Check if it is enemy type
             Enemy enemy = potentialTarget.GetComponent<Enemy>();
             if ((enemy.getEnemyType() == EnemyType.Medieval && playerType != 0) ||
-                (enemy.getEnemyType() == EnemyType.Cyberpunk && playerType != 1))
-            {
+                (enemy.getEnemyType() == EnemyType.Cyberpunk && playerType != 1)) {
 
                 Vector3 directionToTarget = potentialTarget.transform.position - currentPosition;
                 float dSqrToTarget = directionToTarget.sqrMagnitude;
@@ -157,7 +156,7 @@ public class Enemy : MonoBehaviour
 
             }
 
-
+            
         }
 
         return bestTarget;
