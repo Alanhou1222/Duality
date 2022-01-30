@@ -7,16 +7,22 @@ public class TreasureUI : MonoBehaviour
     public static bool boxIsOpened = false;
     public Transform player;
     public Transform box;
-    public float minDistance = 2f;
+    public GameObject pressEGuide;
+    public float minDistance = 3f;
     public GameObject BoxUI;
     // Update is called once per frame
     void Update() {
-        if (Input.GetKeyDown(KeyCode.E) && (player.position - box.position).magnitude <= minDistance) {
-            if (boxIsOpened) {
-                Close();
-            } else {
-                Open();
+        if ((player.position - box.position).magnitude <= minDistance) {
+            pressEGuide.SetActive(true);
+            if (Input.GetKeyDown(KeyCode.E)) {
+                if (boxIsOpened) {
+                    Close();
+                } else {
+                    Open();
+                }
             }
+        } else {
+          pressEGuide.SetActive(false);
         }
     }
 
