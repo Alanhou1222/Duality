@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class playerMovement : MonoBehaviour
 {
+    public PlayerControl playerControl;
     public Animator animator;
     public float playMoveSpeed = 5f;
 
     public Rigidbody2D rb;
     public Camera cam;
 
-    public Collider2D collider;
     Vector2 movement;
     Vector2 mousePos;
     Vector3 slideDir;
@@ -103,10 +103,10 @@ public class playerMovement : MonoBehaviour
                 slideDir.x = Input.GetAxisRaw("Horizontal");
                 slideDir.y = Input.GetAxisRaw("Vertical");
                 slideSpeed = 30f;
-                collider.enabled = !collider.enabled;
                 rollingBar.transform.localScale = new Vector3(0f,0.1f,1);
                 rollingBar.GetComponent<SpriteRenderer>().color = new Color(80/255f, 80/255f, 80/255f,1f);
                 animator.SetBool("isRolling", true);
+                playerControl.invincible = true;
                 StartCoroutine(RollingCoolDown());
             }
         }
@@ -115,8 +115,8 @@ public class playerMovement : MonoBehaviour
         transform.position += slideDir * slideSpeed * Time.deltaTime;
         slideSpeed -= slideSpeed * 5f * Time.deltaTime;
         if(slideSpeed<5f){
-            collider.enabled = !collider.enabled;
             animator.SetBool("isRolling", false);
+            playerControl.invincible = false;
             state = State.Normal;
         }
     }

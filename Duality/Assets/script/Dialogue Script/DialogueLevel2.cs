@@ -4,18 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class DialogueLevel1 : MonoBehaviour
+public class DialogueLevel2 : MonoBehaviour
 {
 
     // Image for medieval and cyberpunk
     [SerializeField] Image medieval;
     [SerializeField] Image cyberpunk;
 
-    // Button for medieval and cyberpunk
-    [SerializeField] GameObject medievalButton;
-    [SerializeField] GameObject cyberpunkButton;
-
     [SerializeField] TMP_Text dialogue;
+
+    [SerializeField] GameObject dialogueObject;
 
     int dialogueProgress = 0;
 
@@ -23,29 +21,29 @@ public class DialogueLevel1 : MonoBehaviour
 
     string[] allDialogues =
     {
-        "Why are thou here !? Thou savage raider",
-        "We need ... to live",
-        "What should I do?"
+        "Our family ... our home",
+        "Our family ... OUR HOME",
+        "You have no idea of us."
     };
-    
+
     bool[,] whoTalks =
     {
-        { true, false }, 
+        { true, false },
         { false, true },
-        { true, true },
+        { false, true },
     };
 
     // Start is called before the first frame update
     void Start()
     {
+        dialogueObject.SetActive(true);
+        Time.timeScale = 0;
+
         medieval.enabled = whoTalks[dialogueProgress, 0];
         cyberpunk.enabled = whoTalks[dialogueProgress, 1];
 
         //medieval.SetActive(whoTalks[dialogueProgress, 0]);
         //cyberpunk.SetActive(whoTalks[dialogueProgress, 1]);
-
-        medievalButton.SetActive(false);
-        cyberpunkButton.SetActive(false);
 
         dialogue.text = allDialogues[dialogueProgress];
     }
@@ -60,13 +58,14 @@ public class DialogueLevel1 : MonoBehaviour
             {
                 finishDialogue = true;
 
+                dialogueObject.SetActive(false);
+
                 dialogue.enabled = false;
 
                 medieval.enabled = true;
                 cyberpunk.enabled = true;
 
-                medievalButton.SetActive(true);
-                cyberpunkButton.SetActive(true);
+                Time.timeScale = 1;
             }
             else
             {
