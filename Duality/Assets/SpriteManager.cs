@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpriteManager : MonoBehaviour
+public class SpriteManagerObject : MonoBehaviour
 {
     public Sprite redMed;
     public Sprite blueMed;

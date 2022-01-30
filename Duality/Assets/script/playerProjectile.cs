@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class playerProjectile : MonoBehaviour
 {
+    public enum EnemyType
+    {
+        Medieval,
+        Cyberpunk
+    }
+    public enum PlayerTeam{
+        Red,
+        Blue
+    }
     public PlayerControl controller;
     public SpriteRenderer spriteRenderer;
     public Sprite redArrow;

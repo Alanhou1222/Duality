@@ -10,7 +10,10 @@ public class Enemy : MonoBehaviour
         Medieval,
         Cyberpunk
     }
-
+    public enum PlayerTeam{
+        Red,
+        Blue
+    }
     [Header("Ally Speed")]
     // The attributes for an ally
     [SerializeField] float allySpeed = 10f;
@@ -53,13 +56,16 @@ public class Enemy : MonoBehaviour
     // Target enemy
     GameObject enemy;
 
+    // Player Control
+    PlayerControl controller;
+
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         spriteManager = GameObject.Find("SpriteManager").GetComponent(typeof(SpriteManager)) as SpriteManager;   
         spriteRenderer = GetComponent<SpriteRenderer>();
-
+        controller = GameObject.Find("Player").GetComponent(typeof(PlayerControl)) as PlayerControl;
         healthBar = GetComponentInChildren<EnemyHealthBar>();
 
         timeBetweenShots = startTimeBetweenShots;
@@ -70,27 +76,30 @@ public class Enemy : MonoBehaviour
     {
 
         // Get player's type
-        playerType = 1;
-
+        if(controller.era == PlayerControl.PlayerType.Medieval) {
+            playerType = 0;
+        }
+        else {
+            playerType = 1;
+        }
         // Set enemyType
         healthBar.SwitchSide(enemyType);
         healthBar.SetHealth(enemyCurrentHealth);
 
-        if (enemyType == EnemyType.Medieval)
-        {
-            spriteRenderer.sprite = spriteManager.redMed;
-        }
-        else
-        {
-            spriteRenderer.sprite = spriteManager.redCybe;
-        }
 
         // if playerType is the same as enemyType, they are allies
         // otherwise they are enemies
         if ((playerType == 0 && enemyType == EnemyType.Medieval) || (playerType == 1 && enemyType == EnemyType.Cyberpunk))
         {
             isSameTypeAsPlayer = true;
-
+            if (enemyType == EnemyType.Medieval)
+            {
+                spriteRenderer.sprite = spriteManager.blueMed;
+            }
+            else
+            {
+                spriteRenderer.sprite = spriteManager.blueCybe;
+            }
             allEnemies = GameObject.FindGameObjectsWithTag("Enemy");
             enemy = getClosestEnemy(allEnemies);
 
@@ -124,7 +133,14 @@ public class Enemy : MonoBehaviour
         else
         {
             isSameTypeAsPlayer = false;
-
+            if (enemyType == EnemyType.Medieval)
+            {
+                spriteRenderer.sprite = spriteManager.redMed;
+            }
+            else
+            {
+                spriteRenderer.sprite = spriteManager.redCybe;
+            }
             if (Vector2.Distance(transform.position, player.position) > enemyStoppingDistance)
             {
                 transform.position = Vector2.MoveTowards(transform.position, player.position, enemySpeed * Time.deltaTime);

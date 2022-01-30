@@ -5,12 +5,17 @@ using UnityEngine;
 
 public class EnemyProjectile : MonoBehaviour
 {
-
+    public enum EnemyType
+    {
+        Medieval,
+        Cyberpunk
+    }
     private float speed = 8f;
 
     private Transform player;
     private Vector2 target;
     private bool isEnemy = false;
+    private PlayerControl controller;
 
     float enemyAttack = 8f;
     SpriteManager sm;
@@ -23,6 +28,13 @@ public class EnemyProjectile : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         transform.localScale = new Vector3(2,2,2);
         target = new Vector2(player.position.x, player.position.y);
+        controller = GameObject.Find("Player").GetComponent(typeof(PlayerControl)) as PlayerControl;
+        if(controller.era == PlayerControl.PlayerType.Medieval) {
+            spriteRenderer.sprite = sm.redLaser;
+        }
+        else {
+            spriteRenderer.sprite = sm.redArrow;
+        }
         LookAt2D(transform, target);
         transform.eulerAngles = transform.eulerAngles + new Vector3(0,0,225);
     }

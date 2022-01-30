@@ -11,13 +11,24 @@ public class Projectile : MonoBehaviour
     private Transform player;
     private Vector2 target;
     private bool isEnemy = false;
+    SpriteRenderer spriteRenderer;
+    SpriteManager sm;
+    PlayerControl controller;
 
     float allyAttack = 8f;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        controller = GameObject.Find("Player").GetComponent(typeof(PlayerControl)) as PlayerControl;
+        sm = GameObject.Find("SpriteManager").GetComponent(typeof(SpriteManager)) as SpriteManager;   
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        if(controller.era == PlayerControl.PlayerType.Medieval) {
+            spriteRenderer.sprite = sm.blueArrow;
+        }
+        else {
+            spriteRenderer.sprite = sm.blueLaser;
+        }
     }
 
     // Update is called once per frame
