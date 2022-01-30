@@ -6,7 +6,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
 
-    private float speed = 8f;
+    private float speed = 20f;
 
     private Transform player;
     private Vector2 target;
@@ -16,7 +16,7 @@ public class Projectile : MonoBehaviour
     SpriteManager sm;
     PlayerControl controller;
 
-    float allyAttack = 8f;
+    float allyAttack = 3f;
 
     // Start is called before the first frame update
     void Start()
@@ -50,8 +50,9 @@ public class Projectile : MonoBehaviour
         if (collision.gameObject.tag == "Enemy" && !collision.gameObject.GetComponent<Enemy>().getIsSameTypeAsPlayer()) {
             Debug.Log("Destroy ally projectile");
             collision.gameObject.GetComponent<Enemy>().dealDamage(allyAttack);
+            DestroyProjectile();
         }
-        DestroyProjectile();
+        
     }
 
     private void DestroyProjectile()
@@ -72,5 +73,10 @@ public class Projectile : MonoBehaviour
         normalizedDirection = direction.normalized;
         var angle = Mathf.Atan2(direction.y, direction.x)*Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+    }
+
+    public void SetSpeed(float actualSpeed)
+    {
+        speed = actualSpeed;
     }
 }
