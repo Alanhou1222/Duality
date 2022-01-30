@@ -50,7 +50,7 @@ public class PlayerControl : MonoBehaviour
         if (changeEraProgress < 40) {
             SwitchEra(PlayerType.Cyberpunk);
         }
-        else if(changeEraProgress > 60)){
+        else if(changeEraProgress > 60){
             SwitchEra(PlayerType.Medieval);
         }
     }
