@@ -20,7 +20,14 @@ public class playerProjectile : MonoBehaviour
     public Sprite redLaser;
     public Sprite blueLaser;
 
+    private float attack = 10f;
+
     void OnCollisionEnter2D(Collision2D other) {
+
+        if (other.gameObject.tag == "Enemy" && !other.gameObject.GetComponent<Enemy>().getIsSameTypeAsPlayer())
+        {
+            other.gameObject.GetComponent<Enemy>().dealDamage(attack);
+        }
         Destroy(gameObject);
     }
 
