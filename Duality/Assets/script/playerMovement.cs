@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class playerMovement : MonoBehaviour
 {
+    public Animator animator;
     public float playMoveSpeed = 5f;
 
     public Rigidbody2D rb;
@@ -63,6 +64,7 @@ public class playerMovement : MonoBehaviour
                 movement.x = Input.GetAxisRaw("Horizontal");
                 movement.y = Input.GetAxisRaw("Vertical");
                 HandleDodgeRoll();
+                animator.SetFloat("speed",Mathf.Abs(movement.x) + Mathf.Abs(movement.y));
                 break;
             case State.DodeRollSliding:
                 HandleDodgeRollSliding();
@@ -104,6 +106,7 @@ public class playerMovement : MonoBehaviour
                 collider.enabled = !collider.enabled;
                 rollingBar.transform.localScale = new Vector3(0f,0.1f,1);
                 rollingBar.GetComponent<SpriteRenderer>().color = new Color(80/255f, 80/255f, 80/255f,1f);
+                animator.SetBool("isRolling", true);
                 StartCoroutine(RollingCoolDown());
             }
         }
@@ -113,6 +116,7 @@ public class playerMovement : MonoBehaviour
         slideSpeed -= slideSpeed * 5f * Time.deltaTime;
         if(slideSpeed<5f){
             collider.enabled = !collider.enabled;
+            animator.SetBool("isRolling", false);
             state = State.Normal;
         }
     }
