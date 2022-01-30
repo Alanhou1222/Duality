@@ -20,7 +20,7 @@ public class HealthBar : MonoBehaviour
        slider.value = health;
     } 
 
-    void SwitchSide(PlayerControl.PlayerType playerType){
+    public void SwitchSide(PlayerControl.PlayerType playerType){
         if(playerType == PlayerControl.PlayerType.Medieval){
             fill.GetComponent<Image>().color = new Color(0.745f, 0.251f, 0.251f,1f);
             icon.GetComponent<Image>().sprite = bloodDrop;

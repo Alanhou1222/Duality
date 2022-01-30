@@ -35,23 +35,12 @@ public class PlayerControl : MonoBehaviour
 
     void Update() {
         if(coinCount == 3) {
-            if(era == PlayerType.Medieval) {
-                era = PlayerType.Cyberpunk;
-            }
-            else {
-                era = PlayerType.Medieval;
-            }
+            SwitchEra();
             coinCount = 0;
             cm.GenerateCoins(3);
         }
-        if(era == PlayerType.Medieval){
-            spriteRenderer.sprite = spriteManager.redMed;
-        }
-        else{
-            spriteRenderer.sprite = spriteManager.cybeMainCharacter;
-        }
-        if(Input.GetKeyDown(KeyCode.Space)){
-            TakeDamage(20);
+        if(Input.GetKeyDown(KeyCode.R)){
+            SwitchEra();
         }
     }
     
@@ -67,5 +56,16 @@ public class PlayerControl : MonoBehaviour
         {
             TakeDamage(20);
         }
+    }
+
+    public void SwitchEra(){ 
+        if(era == PlayerType.Medieval) {
+                
+                era = PlayerType.Cyberpunk;
+            }
+            else {
+                era = PlayerType.Medieval;
+            }
+        healthBar.SwitchSide(era);
     }
 }
