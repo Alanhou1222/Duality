@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public AudioSource shootingSound;
 
     public enum EnemyType
     {
@@ -215,6 +216,8 @@ public class Enemy : MonoBehaviour
 
             if (isSameTypeAsPlayer && !isStop)
             {
+                shootingSound.Play();
+                Debug.Log("enemy shoot");
                 GameObject projectile = Instantiate(allyProjectile, shootPoint.transform.position, Quaternion.identity);
                 projectile.GetComponent<Projectile>().setTarget(enemy.transform);
                 projectile.GetComponent<Projectile>().SetSpeed(projectileSpeed);
