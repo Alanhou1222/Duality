@@ -29,6 +29,7 @@ public class PlayerControl : MonoBehaviour
         currentHealth = maxHealth;
         spriteManager = GameObject.Find("SpriteManager").GetComponent(typeof(SpriteManager)) as SpriteManager;
         cm = GameObject.Find("CoinManager").GetComponent(typeof(CoinManager)) as CoinManager;
+        spriteRenderer = GetComponent<SpriteRenderer>();
         healthBar.SetHealth(maxHealth);
     }
 
