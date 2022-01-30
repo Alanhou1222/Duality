@@ -36,6 +36,9 @@ public class DialogueLevel2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        dialogueObject.SetActive(true);
+        Time.timeScale = 0;
+
         medieval.enabled = whoTalks[dialogueProgress, 0];
         cyberpunk.enabled = whoTalks[dialogueProgress, 1];
 
@@ -55,10 +58,14 @@ public class DialogueLevel2 : MonoBehaviour
             {
                 finishDialogue = true;
 
+                dialogueObject.SetActive(false);
+
                 dialogue.enabled = false;
 
                 medieval.enabled = true;
                 cyberpunk.enabled = true;
+
+                Time.timeScale = 1;
             }
             else
             {
