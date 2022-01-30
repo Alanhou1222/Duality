@@ -72,7 +72,6 @@ public class DialogueLevel1 : MonoBehaviour
 
                 medievalButton.SetActive(true);
                 cyberpunkButton.SetActive(true);
-                Time.timeScale = 1;
             }
             else
             {
@@ -82,5 +81,8 @@ public class DialogueLevel1 : MonoBehaviour
                 dialogue.text = allDialogues[dialogueProgress];
             }
         }
+    }
+    public void startTime() {
+        Time.timeScale = 1;
     }
 }

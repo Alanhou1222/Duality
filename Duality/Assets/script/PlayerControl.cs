@@ -69,6 +69,14 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
+    public void SwitchEraInt(int type) {
+        if(type == 0){
+            SwitchEra(PlayerType.Medieval);
+        }
+        else{
+            SwitchEra(PlayerType.Cyberpunk);
+        }
+    }
     public void SwitchEra(PlayerType type){ 
         era = type;
         healthBar.SwitchSide(era);
