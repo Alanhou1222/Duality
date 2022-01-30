@@ -10,23 +10,30 @@ public class Enemy : MonoBehaviour
         Medieval,
         Cyberpunk
     }
-
+    public enum PlayerTeam{
+        Red,
+        Blue
+    }
     [Header("Ally Speed")]
     // The attributes for an ally
-    [SerializeField] float allySpeed = 10f;
-    [SerializeField] float allyStoppingDistance = 20f;
-    [SerializeField] float allyRetreatDistance = 10f;
+    float allySpeed = 10f;
+    float allyStoppingDistance = 20f;
+    float allyRetreatDistance = 10f;
 
     [Header("Enemy Speed")]
     // The attributes for an enemy
-    [SerializeField] float enemySpeed = 10f;
-    [SerializeField] float enemyStoppingDistance = 20f;
-    [SerializeField] float enemyRetreatDistance = 10f;
+    float enemySpeed = 10f;
+    float enemyStoppingDistance = 20f;
+    float enemyRetreatDistance = 10f;
 
     [Header("Enemy Type")]
     [SerializeField] EnemyType enemyType = EnemyType.Medieval;
+    [Range(0f, 1f)]
     [SerializeField] float aggro = 0.5f;
+    [Range(0f, 1f)]
+    [SerializeField] float distance = 0.5f;
     private bool isSameTypeAsPlayer = true;
+    [SerializeField] bool isSpecialEnemy = false;
     int playerType = 1;
 
     [Header("Projectile")]
@@ -36,6 +43,7 @@ public class Enemy : MonoBehaviour
 
     private float timeBetweenShots;
     [SerializeField] float startTimeBetweenShots;
+    float projectileSpeed = 0f;
 
     [Header("Health")]
     EnemyHealthBar healthBar;
@@ -45,6 +53,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] SpriteRenderer spriteRenderer; 
     private SpriteManager spriteManager;
 
+    private bool isStop = false;
+
     Transform player;
 
     // Get all enemies
@@ -53,14 +63,61 @@ public class Enemy : MonoBehaviour
     // Target enemy
     GameObject enemy;
 
+    // Player Control
+    PlayerControl controller;
+
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         spriteManager = GameObject.Find("SpriteManager").GetComponent(typeof(SpriteManager)) as SpriteManager;   
         spriteRenderer = GetComponent<SpriteRenderer>();
-
+        controller = GameObject.Find("Player").GetComponent(typeof(PlayerControl)) as PlayerControl;
         healthBar = GetComponentInChildren<EnemyHealthBar>();
+
+        // Set aggro and distance variable
+        //                  Aggro high <--------------> low
+        // Ammo speed       20f     4f      10f     4f
+        // Movement speed   4.5f    1f      3f      1f
+        // Shooting speed   0.5f    0.25f   1f      1.5f
+
+        //                  Distance close <----------> far
+        // Stopping Distance    2f      4f      5f      4f (6f)
+        // Retrieving Distance  1f      2f      3f      2f (4f)
+
+        // Easiest the right most
+        // Mostly set up on third or around third
+        // Little on the second
+        // And the hardest on the left most
+
+        // Renew
+        // Set 4f, 1f, 0.25f, 4f, 2f
+        // Other linear
+
+        // Aggro
+        projectileSpeed = 4f + 16f * aggro;
+        allySpeed = 1.5f + 3f * aggro;
+        enemySpeed = 1f + 3.5f * aggro;
+        startTimeBetweenShots = 1.5f - aggro;
+
+        // Distance
+        allyStoppingDistance = 2f + 4f * distance;
+        enemyStoppingDistance = 2f + 4f * distance;
+        allyRetreatDistance = 1f + 3f * distance;
+        enemyRetreatDistance = 1f + 3f * distance;
+
+        // Special Enemy
+        if (isSpecialEnemy)
+        {
+            projectileSpeed = 4f;
+            allySpeed = 1f;
+            enemySpeed = 1f;
+            startTimeBetweenShots = 0.25f;
+            allyStoppingDistance = 4f;
+            enemyStoppingDistance = 4f;
+            allyRetreatDistance = 2f;
+            enemyRetreatDistance = 2f;
+        }
 
         timeBetweenShots = startTimeBetweenShots;
     }
@@ -69,36 +126,40 @@ public class Enemy : MonoBehaviour
     void Update()
     {
 
-        // Get player's type
-        playerType = 1;
+        isStop = false;
 
+        // Get player's type
+        if (controller.era == PlayerControl.PlayerType.Medieval) {
+            playerType = 0;
+        }
+        else {
+            playerType = 1;
+        }
         // Set enemyType
         healthBar.SwitchSide(enemyType);
         healthBar.SetHealth(enemyCurrentHealth);
 
-        if (enemyType == EnemyType.Medieval)
-        {
-            spriteRenderer.sprite = spriteManager.redMed;
-        }
-        else
-        {
-            spriteRenderer.sprite = spriteManager.redCybe;
-        }
 
         // if playerType is the same as enemyType, they are allies
         // otherwise they are enemies
         if ((playerType == 0 && enemyType == EnemyType.Medieval) || (playerType == 1 && enemyType == EnemyType.Cyberpunk))
         {
             isSameTypeAsPlayer = true;
-
+            if (enemyType == EnemyType.Medieval)
+            {
+                spriteRenderer.sprite = spriteManager.blueMed;
+            }
+            else
+            {
+                spriteRenderer.sprite = spriteManager.blueCybe;
+            }
             allEnemies = GameObject.FindGameObjectsWithTag("Enemy");
             enemy = getClosestEnemy(allEnemies);
 
             // No nearest enemy available
             if (enemy == null)
             {
-                Debug.Log("no enemy");
-                // don't do anything 
+                isStop = true;
             }
 
             else
@@ -124,7 +185,14 @@ public class Enemy : MonoBehaviour
         else
         {
             isSameTypeAsPlayer = false;
-
+            if (enemyType == EnemyType.Medieval)
+            {
+                spriteRenderer.sprite = spriteManager.redMed;
+            }
+            else
+            {
+                spriteRenderer.sprite = spriteManager.redCybe;
+            }
             if (Vector2.Distance(transform.position, player.position) > enemyStoppingDistance)
             {
                 transform.position = Vector2.MoveTowards(transform.position, player.position, enemySpeed * Time.deltaTime);
@@ -145,19 +213,22 @@ public class Enemy : MonoBehaviour
         if (timeBetweenShots <= 0)
         {
 
-            if (isSameTypeAsPlayer)
+            if (isSameTypeAsPlayer && !isStop)
             {
                 GameObject projectile = Instantiate(allyProjectile, shootPoint.transform.position, Quaternion.identity);
                 projectile.GetComponent<Projectile>().setTarget(enemy.transform);
+                projectile.GetComponent<Projectile>().SetSpeed(projectileSpeed);
             }
-            else
+            else if (!isSameTypeAsPlayer)
             {
-                Instantiate(enemyProjectile, shootPoint.transform.position, Quaternion.identity);
+                GameObject proj = Instantiate(enemyProjectile, shootPoint.transform.position, Quaternion.identity);
+                proj.GetComponent<EnemyProjectile>().SetSpeed(projectileSpeed);
             }
 
             timeBetweenShots = startTimeBetweenShots;
 
             // if enemy is null
+
 
         }
         else

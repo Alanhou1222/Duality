@@ -26,7 +26,6 @@ public class EnemyHealthBar : MonoBehaviour
     } 
 
     void Update() {
-        SetHealth(100);
         transform.localPosition = new Vector2(0.2f,0.1f);
         SwitchSide(Enemy.EnemyType.Cyberpunk);
     }

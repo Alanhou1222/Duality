@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class playerProjectile : MonoBehaviour
 {
+    public enum EnemyType
+    {
+        Medieval,
+        Cyberpunk
+    }
+    public enum PlayerTeam{
+        Red,
+        Blue
+    }
     public PlayerControl controller;
     public SpriteRenderer spriteRenderer;
     public Sprite redArrow;
@@ -11,7 +20,14 @@ public class playerProjectile : MonoBehaviour
     public Sprite redLaser;
     public Sprite blueLaser;
 
+    private float attack = 10f;
+
     void OnCollisionEnter2D(Collision2D other) {
+
+        if (other.gameObject.tag == "Enemy" && !other.gameObject.GetComponent<Enemy>().getIsSameTypeAsPlayer())
+        {
+            other.gameObject.GetComponent<Enemy>().dealDamage(attack);
+        }
         Destroy(gameObject);
     }
 

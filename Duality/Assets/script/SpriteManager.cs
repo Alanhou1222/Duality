@@ -8,4 +8,11 @@ public class SpriteManager : MonoBehaviour
     public Sprite blueMed;
     public Sprite redCybe;
     public Sprite blueCybe;
+    public Sprite redArrow;
+    public Sprite blueArrow;
+    public Sprite redLaser;
+    public Sprite blueLaser;
+    public Sprite medCoin;
+    public Sprite cybeCoin;
+    public Sprite cybeMainCharacter;
 }

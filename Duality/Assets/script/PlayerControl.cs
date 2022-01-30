@@ -13,6 +13,7 @@ public class PlayerControl : MonoBehaviour
     public Sprite blueCybe;
     public HealthBar healthBar;
     public SpriteManager spriteManager;
+    public int coinCount = 0;
     public enum PlayerType{
         Medieval,
         Cyberpunk
@@ -23,31 +24,23 @@ public class PlayerControl : MonoBehaviour
     };
     public PlayerType era;
     public PlayerTeam team;
+    public CoinManager cm;
     void Start(){
         currentHealth = maxHealth;
         spriteManager = GameObject.Find("SpriteManager").GetComponent(typeof(SpriteManager)) as SpriteManager;
+        cm = GameObject.Find("CoinManager").GetComponent(typeof(CoinManager)) as CoinManager;
+        spriteRenderer = GetComponent<SpriteRenderer>();
         healthBar.SetHealth(maxHealth);
     }
 
     void Update() {
-        if(era == PlayerType.Medieval){
-            if(team == PlayerTeam.Red){
-                spriteRenderer.sprite = spriteManager.redMed;
-            }
-            else {
-                spriteRenderer.sprite = spriteManager.blueMed;
-            }
+        if(coinCount == 3) {
+            SwitchEra();
+            coinCount = 0;
+            cm.GenerateCoins(3);
         }
-        else{
-            if(team == PlayerTeam.Red){
-                spriteRenderer.sprite = spriteManager.redCybe;
-            }
-            else {
-                spriteRenderer.sprite = spriteManager.blueCybe;
-            }
-        }
-        if(Input.GetKeyDown(KeyCode.Space)){
-            TakeDamage(20);
+        if(Input.GetKeyDown(KeyCode.R)){
+            SwitchEra();
         }
     }
     
@@ -55,5 +48,24 @@ public class PlayerControl : MonoBehaviour
     public void TakeDamage(int damage){
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy" && !collision.gameObject.GetComponent<Enemy>().getIsSameTypeAsPlayer())
+        {
+            TakeDamage(20);
+        }
+    }
+
+    public void SwitchEra(){ 
+        if(era == PlayerType.Medieval) {
+                
+                era = PlayerType.Cyberpunk;
+            }
+            else {
+                era = PlayerType.Medieval;
+            }
+        healthBar.SwitchSide(era);
     }
 }

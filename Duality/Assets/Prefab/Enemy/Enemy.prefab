@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6042573590247103867}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.037, y: 0.079, z: 0}
+  m_LocalPosition: {x: 0.036, y: 0.1457, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -146,6 +146,7 @@ MonoBehaviour:
   startTimeBetweenShots: 1.5
   enemyMaxHealth: 100
   enemyCurrentHealth: 100
+  spriteRenderer: {fileID: 0}
 --- !u!61 &-1553226933400130093
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -191,7 +192,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!1001 &6514081368360724647
 PrefabInstance:
