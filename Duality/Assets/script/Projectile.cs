@@ -9,14 +9,15 @@ public class Projectile : MonoBehaviour
     [SerializeField] float speed;
 
     private Transform player;
-    private Vector2 target; 
+    private Vector2 target;
+    private bool isEnemy = false;
+
+    [SerializeField] float allyAttack = 5f;
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
 
-        target = new Vector2(player.position.x, player.position.y);
     }
 
     // Update is called once per frame
@@ -30,8 +31,21 @@ public class Projectile : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy")) {
+            // enemy lose health
+        }
+        DestroyProjectile();
+    }
+
     private void DestroyProjectile()
     {
         Destroy(gameObject);
+    }
+
+    public void setTarget(Transform obj)
+    {
+        target = new Vector2(obj.position.x, obj.position.y);
     }
 }

@@ -11,28 +11,43 @@ public class Enemy : MonoBehaviour
         Cyberpunk
     }
 
+    [Header("AllySpeed")]
     // The attributes for an ally
     [SerializeField] float allySpeed = 10f;
     [SerializeField] float allyStoppingDistance = 20f;
     [SerializeField] float allyRetreatDistance = 10f;
 
+    [Header("EnemySpeed")]
     // The attributes for an enemy
     [SerializeField] float enemySpeed = 10f;
     [SerializeField] float enemyStoppingDistance = 20f;
     [SerializeField] float enemyRetreatDistance = 10f;
 
+    [Header("EnemyType")]
     [SerializeField] EnemyType enemyType = EnemyType.Medieval;
+    bool isSameTypeAsPlayer = true;
     int playerType = 1;
+
+    [Header("Projectile")]
+    [SerializeField] GameObject enemyProjectile;
+    [SerializeField] GameObject allyProjectile;
 
     private float timeBetweenShots;
     [SerializeField] float startTimeBetweenShots;
 
-    [SerializeField] GameObject projectile;
+    [Header("Health bar")]
+    [SerializeField] GameObject medievalHealthBar;
+    [SerializeField] GameObject cyberHealthBar;
 
-    [SerializeField] Transform player;
+    Transform player;
 
     // Get all enemies
     GameObject[] allEnemies;
+
+    // Target enemy
+    GameObject enemy;
+
+    private float enemyHealth = 100f;
 
     // Start is called before the first frame update
     void Start()
@@ -49,16 +64,25 @@ public class Enemy : MonoBehaviour
         // Get player's type
         playerType = 1;
 
+        // Set enemyType
+        if (enemyType == EnemyType.Medieval)
+        {
+
+        }
+
         // if playerType is the same as enemyType, they are allies
         // otherwise they are enemies
-        if (playerType == 0 && enemyType == EnemyType.Medieval || playerType == 1 && enemyType == EnemyType.Cyberpunk)
+        if ((playerType == 0 && enemyType == EnemyType.Medieval) || (playerType == 1 && enemyType == EnemyType.Cyberpunk))
         {
+            isSameTypeAsPlayer = true;
+
             allEnemies = GameObject.FindGameObjectsWithTag("Enemy");
-            GameObject enemy = getClosestEnemy(allEnemies);
+            enemy = getClosestEnemy(allEnemies);
 
             // No nearest enemy available
             if (enemy == null)
             {
+                Debug.Log("no enemy");
                 // don't do anything 
             }
 
@@ -82,7 +106,8 @@ public class Enemy : MonoBehaviour
             
         }
         else
-        { 
+        {
+            isSameTypeAsPlayer = false;
 
             if (Vector2.Distance(transform.position, player.position) > enemyStoppingDistance)
             {
@@ -102,8 +127,21 @@ public class Enemy : MonoBehaviour
 
         if (timeBetweenShots <= 0)
         {
-            Instantiate(projectile, transform.position, Quaternion.identity);
+
+            if (isSameTypeAsPlayer)
+            {
+                GameObject projectile = Instantiate(allyProjectile, transform.position, Quaternion.identity);
+                projectile.GetComponent<Projectile>().setTarget(enemy.transform);
+            }
+            else
+            {
+                Instantiate(enemyProjectile, transform.position, Quaternion.identity);
+            }
+
             timeBetweenShots = startTimeBetweenShots;
+
+            // if enemy is null
+
         }
         else
         {
@@ -160,6 +198,11 @@ public class Enemy : MonoBehaviour
         }
 
         return bestTarget;
+    }
+
+    GameObject getCurrentEnemy()
+    {
+        return enemy;
     }
 }
 
