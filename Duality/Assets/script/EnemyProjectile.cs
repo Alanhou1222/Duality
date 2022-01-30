@@ -39,8 +39,17 @@ public class EnemyProjectile : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             // player lose health
+
         }
-        DestroyProjectile();
+
+        Debug.Log(collision.gameObject.tag);
+
+        if (collision.gameObject.tag != "Enemy")
+        {
+            Debug.Log("Destroy enemy projectile");
+            DestroyProjectile();
+        }
+        
     }
 
     private void DestroyProjectile()
