@@ -41,6 +41,7 @@ public class DialogueLevel1 : MonoBehaviour
     void Start()
     {
         dialogueObject.SetActive(true);
+        Time.timeScale = 0;
 
         medieval.enabled = whoTalks[dialogueProgress, 0];
         cyberpunk.enabled = whoTalks[dialogueProgress, 1];
@@ -71,6 +72,7 @@ public class DialogueLevel1 : MonoBehaviour
 
                 medievalButton.SetActive(true);
                 cyberpunkButton.SetActive(true);
+                Time.timeScale = 1;
             }
             else
             {
