@@ -28,7 +28,10 @@ public class Enemy : MonoBehaviour
 
     [Header("Enemy Type")]
     [SerializeField] EnemyType enemyType = EnemyType.Medieval;
+    [Range(0f, 1f)]
     [SerializeField] float aggro = 0.5f;
+    [Range(0f, 1f)]
+    [SerializeField] float distance = 0.5f;
     private bool isSameTypeAsPlayer = true;
     int playerType = 1;
 
