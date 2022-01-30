@@ -26,8 +26,24 @@ public class playerProjectile : MonoBehaviour
 
         if (other.gameObject.tag == "Enemy" && !other.gameObject.GetComponent<Enemy>().getIsSameTypeAsPlayer())
         {
+            if(other.gameObject.GetComponent<Enemy>().enemyType == Enemy.EnemyType.Medieval){
+                controller.changeEraProgress -= 2;
+            }
+            else {
+                controller.changeEraProgress += 2;
+            }
             other.gameObject.GetComponent<Enemy>().dealDamage(attack);
         }
+        else if (other.gameObject.tag == "Enemy") {
+            if(other.gameObject.GetComponent<Enemy>().enemyType == Enemy.EnemyType.Medieval){
+                controller.changeEraProgress += 5;
+            }
+            else {
+                controller.changeEraProgress -= 5;
+            }
+            other.gameObject.GetComponent<Enemy>().dealDamage(attack);
+            controller.changeEraProgress -= 1;
+        } 
         Destroy(gameObject);
     }
 
