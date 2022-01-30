@@ -21,6 +21,9 @@ public class EnemyProjectile : MonoBehaviour
     float enemyAttack = 8f;
     SpriteManager sm;
     SpriteRenderer spriteRenderer;
+
+    private float timer = 3f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,6 +48,15 @@ public class EnemyProjectile : MonoBehaviour
     {
         transform.position += normalizedDirection * speed * Time.deltaTime;
         // transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
+
+        if (timer > 0)
+        {
+            timer -= Time.deltaTime;
+        }
+        else
+        {
+            DestroyProjectile();
+        }
     }
 
     private void LookAt2D(Transform transform, Vector2 target)

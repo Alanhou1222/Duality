@@ -16,6 +16,8 @@ public class Projectile : MonoBehaviour
     SpriteManager sm;
     PlayerControl controller;
 
+    private float timer = 3f;
+
     float allyAttack = 3f;
 
     // Start is called before the first frame update
@@ -37,6 +39,15 @@ public class Projectile : MonoBehaviour
     {
         transform.position += normalizedDirection * speed * Time.deltaTime;
         // transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
+
+        if (timer > 0)
+        {
+            timer -= Time.deltaTime;
+        }
+        else
+        {
+            DestroyProjectile();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
