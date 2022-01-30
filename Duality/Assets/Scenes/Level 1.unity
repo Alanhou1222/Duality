@@ -122303,7 +122303,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.6965286, y: 1}
+    m_SensorSize: {x: 1.7785467, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -122452,3 +122452,60 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4813034268785447434, guid: 7c8e7843b2dce4b2eb5743bb1eb49338, type: 3}
   m_PrefabInstance: {fileID: 2080971935}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7329877561090647212
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1158098574403398290, guid: da8bb3dc3155e433ea6386f726680e96, type: 3}
+      propertyPath: m_RootOrder
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1158098574403398290, guid: da8bb3dc3155e433ea6386f726680e96, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1158098574403398290, guid: da8bb3dc3155e433ea6386f726680e96, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1158098574403398290, guid: da8bb3dc3155e433ea6386f726680e96, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1158098574403398290, guid: da8bb3dc3155e433ea6386f726680e96, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1158098574403398290, guid: da8bb3dc3155e433ea6386f726680e96, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1158098574403398290, guid: da8bb3dc3155e433ea6386f726680e96, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1158098574403398290, guid: da8bb3dc3155e433ea6386f726680e96, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1158098574403398290, guid: da8bb3dc3155e433ea6386f726680e96, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1158098574403398290, guid: da8bb3dc3155e433ea6386f726680e96, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1158098574403398290, guid: da8bb3dc3155e433ea6386f726680e96, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063902638678528204, guid: da8bb3dc3155e433ea6386f726680e96, type: 3}
+      propertyPath: m_Name
+      value: Sheddars
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: da8bb3dc3155e433ea6386f726680e96, type: 3}
