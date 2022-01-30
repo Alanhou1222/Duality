@@ -20,7 +20,7 @@ public class playerProjectile : MonoBehaviour
     public Sprite redLaser;
     public Sprite blueLaser;
 
-    private float attack = 10f;
+    private float attack = 30f;
 
     void OnCollisionEnter2D(Collision2D other) {
 
