@@ -47,10 +47,10 @@ public class PlayerControl : MonoBehaviour
             coinCount = 0;
             cm.GenerateCoins(3);
         }
-        if (changeEraProgress < 49) {
+        if (changeEraProgress < 40) {
             SwitchEra(PlayerType.Cyberpunk);
         }
-        else {
+        else if(changeEraProgress > 60)){
             SwitchEra(PlayerType.Medieval);
         }
     }

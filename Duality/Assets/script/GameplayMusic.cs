@@ -7,7 +7,7 @@ public class GameplayMusic : MonoBehaviour
 
     AudioSource audioSource;
 
-    GameObject player;
+    [SerializeField] GameObject player;
     PlayerControl playercontrol;
 
     [SerializeField] AudioClip medievalMusic;
@@ -19,14 +19,12 @@ public class GameplayMusic : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
 
-        player = GameObject.FindGameObjectWithTag("Player");
         playercontrol = player.GetComponent<PlayerControl>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        playercontrol = player.GetComponent<PlayerControl>();
         if (playercontrol.era == PlayerControl.PlayerType.Medieval && !isMedieval)
         {
             isMedieval = true;
