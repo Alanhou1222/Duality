@@ -14,6 +14,7 @@ public class EnemyProjectile : MonoBehaviour
 
     private Transform player;
     private Vector2 target;
+    private Vector3 normalizedDirection;
     private bool isEnemy = false;
     private PlayerControl controller;
 
@@ -42,7 +43,8 @@ public class EnemyProjectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
+        transform.position += normalizedDirection * speed * Time.deltaTime;
+        // transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
 
         if (transform.position.x == target.x && transform.position.y == target.y)
         {
@@ -54,6 +56,7 @@ public class EnemyProjectile : MonoBehaviour
     {
         Vector2 current = transform.position;
         var direction = target - current;
+        normalizedDirection = direction.normalized;
         var angle = Mathf.Atan2(direction.y, direction.x)*Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
