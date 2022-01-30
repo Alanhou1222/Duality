@@ -27,7 +27,7 @@ public class Enemy : MonoBehaviour
     float enemyRetreatDistance = 10f;
 
     [Header("Enemy Type")]
-    [SerializeField] EnemyType enemyType = EnemyType.Medieval;
+    public EnemyType enemyType = EnemyType.Medieval;
     [Range(0f, 1f)]
     [SerializeField] float aggro = 0.5f;
     [Range(0f, 1f)]
@@ -312,6 +312,24 @@ public class Enemy : MonoBehaviour
         enemyCurrentHealth -= damage;
         if (enemyCurrentHealth <= 0)
         {
+            if(enemyType == EnemyType.Medieval && playerType == 0){
+                controller.changeEraProgress -= 25;
+            }
+            else if(enemyType == EnemyType.Medieval && playerType == 1){
+                controller.changeEraProgress += 10;
+            }  
+            else if(enemyType == EnemyType.Cyberpunk && playerType == 0){
+                controller.changeEraProgress -= 10;
+            }
+            else if(enemyType == EnemyType.Cyberpunk && playerType == 1){
+                controller.changeEraProgress += 25;
+            }
+            if(controller.changeEraProgress > 100){
+                controller.changeEraProgress = 100;
+            }
+            if(controller.changeEraProgress < 0){
+                controller.changeEraProgress = 0;
+            }
             enemyDead();
         }
     }

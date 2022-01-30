@@ -15,6 +15,7 @@ public class PlayerControl : MonoBehaviour
     public HealthBar healthBar;
     public SpriteManager spriteManager;
     public int coinCount = 0;
+    public int changeEraProgress = 0;
     public enum PlayerType{
         Medieval,
         Cyberpunk
@@ -32,16 +33,25 @@ public class PlayerControl : MonoBehaviour
         cm = GameObject.Find("CoinManager").GetComponent(typeof(CoinManager)) as CoinManager;
         spriteRenderer = GetComponent<SpriteRenderer>();
         healthBar.SetHealth(maxHealth);
+        if(era == PlayerType.Medieval){
+            changeEraProgress = 100;
+        }
+        else {
+            changeEraProgress = 0;
+        }
     }
 
     void Update() {
         if(coinCount == 3) {
-            SwitchEra();
+            // SwitchEra();
             coinCount = 0;
             cm.GenerateCoins(3);
         }
-        if(Input.GetKeyDown(KeyCode.R)){
-            SwitchEra();
+        if (changeEraProgress < 49) {
+            SwitchEra(PlayerType.Cyberpunk);
+        }
+        else {
+            SwitchEra(PlayerType.Medieval);
         }
     }
     
@@ -59,14 +69,8 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    public void SwitchEra(){ 
-        if(era == PlayerType.Medieval) {
-                
-                era = PlayerType.Cyberpunk;
-            }
-            else {
-                era = PlayerType.Medieval;
-            }
+    public void SwitchEra(PlayerType type){ 
+        era = type;
         healthBar.SwitchSide(era);
     }
 }
