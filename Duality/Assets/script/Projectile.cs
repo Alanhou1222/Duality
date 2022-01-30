@@ -33,8 +33,8 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy")) {
-            // enemy lose health
+        if (collision.CompareTag("Enemy") && !collision.gameObject.GetComponent<Enemy>().getIsSameTypeAsPlayer()) {
+            collision.gameObject.GetComponent<Enemy>().dealDamage(allyAttack);
         }
         DestroyProjectile();
     }

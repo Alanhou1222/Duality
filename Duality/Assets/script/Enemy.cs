@@ -11,21 +11,22 @@ public class Enemy : MonoBehaviour
         Cyberpunk
     }
 
-    [Header("AllySpeed")]
+    [Header("Ally Speed")]
     // The attributes for an ally
     [SerializeField] float allySpeed = 10f;
     [SerializeField] float allyStoppingDistance = 20f;
     [SerializeField] float allyRetreatDistance = 10f;
 
-    [Header("EnemySpeed")]
+    [Header("Enemy Speed")]
     // The attributes for an enemy
     [SerializeField] float enemySpeed = 10f;
     [SerializeField] float enemyStoppingDistance = 20f;
     [SerializeField] float enemyRetreatDistance = 10f;
 
-    [Header("EnemyType")]
+    [Header("Enemy Type")]
     [SerializeField] EnemyType enemyType = EnemyType.Medieval;
-    bool isSameTypeAsPlayer = true;
+    [SerializeField] float aggro = 0.5f;
+    private bool isSameTypeAsPlayer = true;
     int playerType = 1;
 
     [Header("Projectile")]
@@ -35,9 +36,11 @@ public class Enemy : MonoBehaviour
     private float timeBetweenShots;
     [SerializeField] float startTimeBetweenShots;
 
-    [Header("Health bar")]
+    [Header("Health")]
     [SerializeField] GameObject medievalHealthBar;
     [SerializeField] GameObject cyberHealthBar;
+    [SerializeField] float enemyMaxHealth = 100f;
+    [SerializeField] float enemyCurrentHealth = 100f;
 
     Transform player;
 
@@ -46,8 +49,6 @@ public class Enemy : MonoBehaviour
 
     // Target enemy
     GameObject enemy;
-
-    private float enemyHealth = 100f;
 
     // Start is called before the first frame update
     void Start()
@@ -66,6 +67,10 @@ public class Enemy : MonoBehaviour
 
         // Set enemyType
         if (enemyType == EnemyType.Medieval)
+        {
+
+        }
+        else
         {
 
         }
@@ -200,9 +205,24 @@ public class Enemy : MonoBehaviour
         return bestTarget;
     }
 
-    GameObject getCurrentEnemy()
+    public bool getIsSameTypeAsPlayer()
     {
-        return enemy;
+        return isSameTypeAsPlayer;
+    }
+
+    public void dealDamage(float damage)
+    {
+        enemyCurrentHealth -= damage;
+        if (enemyCurrentHealth <= 0)
+        {
+            enemyDead();
+        }
+    }
+
+    private void enemyDead()
+    {
+        // add vfx, sfx
+        Destroy(gameObject);
     }
 }
 
