@@ -216,14 +216,13 @@ public class Enemy : MonoBehaviour
 
             if (isSameTypeAsPlayer && !isStop)
             {
-                shootingSound.Play();
-                Debug.Log("enemy shoot");
                 GameObject projectile = Instantiate(allyProjectile, shootPoint.transform.position, Quaternion.identity);
                 projectile.GetComponent<Projectile>().setTarget(enemy.transform);
                 projectile.GetComponent<Projectile>().SetSpeed(projectileSpeed);
             }
             else if (!isSameTypeAsPlayer)
             {
+                shootingSound.Play();
                 GameObject proj = Instantiate(enemyProjectile, shootPoint.transform.position, Quaternion.identity);
                 proj.GetComponent<EnemyProjectile>().SetSpeed(projectileSpeed);
             }
