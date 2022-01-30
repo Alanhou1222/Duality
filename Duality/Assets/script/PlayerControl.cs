@@ -39,6 +39,9 @@ public class PlayerControl : MonoBehaviour
             coinCount = 0;
             cm.GenerateCoins(3);
         }
+        if(Input.GetKeyDown(KeyCode.R)){
+            SwitchEra();
+        }
     }
     
 
