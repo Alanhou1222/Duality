@@ -370,6 +370,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1872937547}
     m_Modifications:
     - target: {fileID: 2116042612, guid: 2b229874e59f24afabfee794c2f14fa6, type: 3}
+      propertyPath: era
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2116042612, guid: 2b229874e59f24afabfee794c2f14fa6, type: 3}
       propertyPath: redMed
       value: 
       objectReference: {fileID: 21300000, guid: 12f7b7273b4bb384ea546355a2364375, type: 3}
