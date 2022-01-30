@@ -36,13 +36,18 @@ public class playerProjectile : MonoBehaviour
         }
         else if (other.gameObject.tag == "Enemy") {
             if(other.gameObject.GetComponent<Enemy>().enemyType == Enemy.EnemyType.Medieval){
-                controller.changeEraProgress += 5;
-            }
-            else {
                 controller.changeEraProgress -= 5;
             }
+            else {
+                controller.changeEraProgress += 5;
+            }
             other.gameObject.GetComponent<Enemy>().dealDamage(attack);
-            controller.changeEraProgress -= 1;
+            if(controller.changeEraProgress > 100){
+                controller.changeEraProgress = 100;
+            }
+            else if(controller.changeEraProgress < 0){
+                controller.changeEraProgress = 0;
+            }
         } 
         Destroy(gameObject);
     }
