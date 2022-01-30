@@ -50,6 +50,8 @@ public class playerMovement : MonoBehaviour
     void Start() {
         state = State.Normal;
         rollingBar.GetComponent<SpriteRenderer>().color = new Color(255/255f, 235/255f, 0f,1f);
+        rollingBar.transform.rotation = Quaternion.AngleAxis(270, Vector3.forward);
+        rollingBar.transform.localPosition = new Vector2(0.2f,0);
     }
     // Update is called once per frame
     void Update()
@@ -72,10 +74,24 @@ public class playerMovement : MonoBehaviour
     {
         rb.MovePosition(rb.position + movement * playMoveSpeed * Time.fixedDeltaTime);
 
-        Vector2 lookDir = mousePos - rb.position;
-        float angle = Mathf.Atan2(lookDir.y,lookDir.x) * Mathf.Rad2Deg - 90f;
-        rb.rotation = angle;
+        // Vector2 lookDir = mousePos - rb.position;
+        // float angle = Mathf.Atan2(lookDir.y,lookDir.x) * Mathf.Rad2Deg - 90f;
+        // rb.rotation = angle;
+        LookAt2D(transform,mousePos);
         
+    }
+
+    public void LookAt2D(Transform transform, Vector2 target)
+    {
+        Vector2 current = transform.position;
+        if(current[0] > target[0]){
+            transform.rotation = Quaternion.AngleAxis(90, Vector3.forward);
+            transform.localScale = new Vector3(6,6,1);
+        }
+        else {
+            transform.rotation = Quaternion.AngleAxis(270, Vector3.forward);
+            transform.localScale = new Vector3(-6,6,1);
+        }
     }
 
     void HandleDodgeRoll(){
@@ -102,8 +118,8 @@ public class playerMovement : MonoBehaviour
     }
 
     IEnumerator RollingCoolDown(){
-        while(rollingBar.transform.localScale.x<1.5f){
-            rollingBar.transform.localScale = new Vector3(rollingBar.transform.localScale.x+0.1f,0.1f,1);
+        while(rollingBar.transform.localScale.x<1.5f/6){
+            rollingBar.transform.localScale = new Vector3(rollingBar.transform.localScale.x+0.1f/6,0.1f/6,1);
             yield return wfs;
         }
         rollingBar.GetComponent<SpriteRenderer>().color = new Color(255/255f, 235/255f, 0f,1f);
