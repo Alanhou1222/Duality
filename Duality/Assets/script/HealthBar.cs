@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class HealthBar : MonoBehaviour
 {  
+    public GameObject Dead;
     public Slider slider;
     public GameObject fill;
     public GameObject icon;
@@ -18,6 +19,9 @@ public class HealthBar : MonoBehaviour
    } 
     public void SetHealth(int health){
        slider.value = health;
+       if(slider.value<=0){
+            Die();
+        }
     } 
 
     public void SwitchSide(PlayerControl.PlayerType playerType){
@@ -32,5 +36,10 @@ public class HealthBar : MonoBehaviour
             icon.GetComponent<Image>().sprite = battery;
             boarder.GetComponent<Image>().sprite = cyberpunkBoarder;
         }
+    }
+
+    public void Die(){
+        Dead.SetActive(true);
+        Time.timeScale = 0;
     }
 }
