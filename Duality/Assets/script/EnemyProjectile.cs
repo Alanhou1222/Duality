@@ -60,13 +60,10 @@ public class EnemyProjectile : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.gameObject.tag == "Player")
         {
-            // player lose health
-
+            collision.gameObject.GetComponent<PlayerControl>().TakeDamage((int)UnityEngine.Random.Range(5f, 10f));
         }
-
-        Debug.Log(collision.gameObject.tag);
 
         if (collision.gameObject.tag != "Enemy")
         {
