@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class TreasureUI : MonoBehaviour
 {
-    public static bool boxIsOpened = false;
     public Transform player;
     public Transform box;
     public GameObject pressEGuide;
@@ -15,26 +14,15 @@ public class TreasureUI : MonoBehaviour
         if ((player.position - box.position).magnitude <= minDistance) {
             pressEGuide.SetActive(true);
             if (Input.GetKeyDown(KeyCode.E)) {
-                if (boxIsOpened) {
-                    Close();
-                } else {
-                    Open();
-                }
+                Open();
             }
         } else {
           pressEGuide.SetActive(false);
         }
     }
-
-    void Close() {
-        BoxUI.SetActive(false);
-        Time.timeScale = 1f;
-        boxIsOpened = false;
-    }
     
     void Open() {
         BoxUI.SetActive(true);
         Time.timeScale = 0f;
-        boxIsOpened = true;
     }
 }
