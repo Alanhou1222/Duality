@@ -6,21 +6,22 @@ using UnityEngine;
 public class EnemyProjectile : MonoBehaviour
 {
 
-    [SerializeField] float speed;
+    private float speed = 8f;
 
     private Transform player;
     private Vector2 target;
     private bool isEnemy = false;
 
-    [SerializeField] float enemyAttack = 10f;
+    float enemyAttack = 8f;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
-
+        transform.localScale = new Vector3(2,2,2);
         target = new Vector2(player.position.x, player.position.y);
-
+        LookAt2D(transform, target);
+        transform.eulerAngles = transform.eulerAngles + new Vector3(0,0,225);
     }
 
     // Update is called once per frame
@@ -34,6 +35,14 @@ public class EnemyProjectile : MonoBehaviour
         }
     }
 
+    private void LookAt2D(Transform transform, Vector2 target)
+    {
+        Vector2 current = transform.position;
+        var direction = target - current;
+        var angle = Mathf.Atan2(direction.y, direction.x)*Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+    }
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))

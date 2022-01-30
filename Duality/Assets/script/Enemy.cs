@@ -42,6 +42,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] float enemyMaxHealth = 100f;
     [SerializeField] float enemyCurrentHealth = 100f;
 
+    [SerializeField] SpriteRenderer spriteRenderer; 
+    private SpriteManager spriteManager;
+
     Transform player;
 
     // Get all enemies
@@ -54,6 +57,8 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        spriteManager = GameObject.Find("SpriteManager").GetComponent(typeof(SpriteManager)) as SpriteManager;   
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
         healthBar = GetComponentInChildren<EnemyHealthBar>();
 
@@ -70,13 +75,14 @@ public class Enemy : MonoBehaviour
         // Set enemyType
         healthBar.SwitchSide(enemyType);
         healthBar.SetHealth(enemyCurrentHealth);
+
         if (enemyType == EnemyType.Medieval)
         {
-
+            spriteRenderer.sprite = spriteManager.redMed;
         }
         else
         {
-
+            spriteRenderer.sprite = spriteManager.redCybe;
         }
 
         // if playerType is the same as enemyType, they are allies
@@ -111,6 +117,7 @@ public class Enemy : MonoBehaviour
                 {
                     transform.position = Vector2.MoveTowards(transform.position, enemy.transform.position, -allySpeed * Time.deltaTime);
                 }
+                LookAt2D(transform, enemy.transform.position);
             }
             
         }
@@ -131,6 +138,7 @@ public class Enemy : MonoBehaviour
             {
                 transform.position = Vector2.MoveTowards(transform.position, player.position, -enemySpeed * Time.deltaTime);
             }
+            LookAt2D(transform, player.transform.position);
 
         }
 
@@ -212,6 +220,20 @@ public class Enemy : MonoBehaviour
     public bool getIsSameTypeAsPlayer()
     {
         return isSameTypeAsPlayer;
+    }
+
+    public void LookAt2D(Transform transform, Vector2 target)
+    {
+        Vector2 current = transform.position;
+        if(current[0] > target[0]){
+            transform.rotation = Quaternion.AngleAxis(90, Vector3.forward);
+            transform.localScale = new Vector3(6,6,1);
+        }
+        else {
+            transform.rotation = Quaternion.AngleAxis(270, Vector3.forward);
+            transform.localScale = new Vector3(-6,6,1);
+        }
+        
     }
 
     public void dealDamage(float damage)

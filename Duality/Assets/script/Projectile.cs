@@ -6,13 +6,13 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
 
-    [SerializeField] float speed;
+    private float speed = 8f;
 
     private Transform player;
     private Vector2 target;
     private bool isEnemy = false;
 
-    [SerializeField] float allyAttack = 5f;
+    float allyAttack = 8f;
 
     // Start is called before the first frame update
     void Start()
@@ -50,5 +50,14 @@ public class Projectile : MonoBehaviour
     public void setTarget(Transform obj)
     {
         target = new Vector2(obj.position.x, obj.position.y);
+        LookAt2D(transform, target);
+        transform.eulerAngles = transform.eulerAngles + new Vector3(0,0,225);
+    }
+    private void LookAt2D(Transform transform, Vector2 target)
+    {
+        Vector2 current = transform.position;
+        var direction = target - current;
+        var angle = Mathf.Atan2(direction.y, direction.x)*Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 }
