@@ -60,7 +60,7 @@ Transform:
   m_GameObject: {fileID: 8504641541083315514}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.53, y: 2.52, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7111460756166624407}
@@ -144,8 +144,6 @@ MonoBehaviour:
   allyProjectile: {fileID: 644556240816556492, guid: 2155da341b29c46c9b5286a6085979f1, type: 3}
   shootPoint: {fileID: 6042573590247103867}
   startTimeBetweenShots: 1.5
-  medievalHealthBar: {fileID: 0}
-  cyberHealthBar: {fileID: 0}
   enemyMaxHealth: 100
   enemyCurrentHealth: 100
 --- !u!61 &-1553226933400130093
