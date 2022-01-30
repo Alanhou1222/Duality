@@ -11,7 +11,6 @@ public class playerMovement : MonoBehaviour
     public Camera cam;
 
     public Collider2D collider;
-
     Vector2 movement;
     Vector2 mousePos;
     Vector3 slideDir;
@@ -19,6 +18,8 @@ public class playerMovement : MonoBehaviour
     private Vector2 rollDir;
     private float rollSpeed;
     private State state;
+    public GameObject rollingBar;
+    WaitForSeconds wfs = new WaitForSeconds(0.2f);
     private enum State{
         Normal,
         DodeRollSliding
@@ -48,6 +49,7 @@ public class playerMovement : MonoBehaviour
     // }
     void Start() {
         state = State.Normal;
+        rollingBar.GetComponent<SpriteRenderer>().color = new Color(255/255f, 235/255f, 0f,1f);
     }
     // Update is called once per frame
     void Update()
@@ -78,19 +80,32 @@ public class playerMovement : MonoBehaviour
 
     void HandleDodgeRoll(){
         if(Input.GetKeyDown(KeyCode.Space)){
-            state = State.DodeRollSliding;
-            slideDir.x = Input.GetAxisRaw("Horizontal");
-            slideDir.y = Input.GetAxisRaw("Vertical");
-            slideSpeed = 40f;
-            collider.enabled = !collider.enabled;
+            if(rollingBar.GetComponent<SpriteRenderer>().color == new Color(255/255f, 235/255f, 0f,1f)){
+                state = State.DodeRollSliding;
+                slideDir.x = Input.GetAxisRaw("Horizontal");
+                slideDir.y = Input.GetAxisRaw("Vertical");
+                slideSpeed = 30f;
+                collider.enabled = !collider.enabled;
+                rollingBar.transform.localScale = new Vector3(0f,0.1f,1);
+                rollingBar.GetComponent<SpriteRenderer>().color = new Color(80/255f, 80/255f, 80/255f,1f);
+                StartCoroutine(RollingCoolDown());
+            }
         }
     }
     void HandleDodgeRollSliding(){
         transform.position += slideDir * slideSpeed * Time.deltaTime;
-        slideSpeed -= slideSpeed * 6f * Time.deltaTime;
+        slideSpeed -= slideSpeed * 5f * Time.deltaTime;
         if(slideSpeed<5f){
             collider.enabled = !collider.enabled;
             state = State.Normal;
         }
+    }
+
+    IEnumerator RollingCoolDown(){
+        while(rollingBar.transform.localScale.x<1.5f){
+            rollingBar.transform.localScale = new Vector3(rollingBar.transform.localScale.x+0.1f,0.1f,1);
+            yield return wfs;
+        }
+        rollingBar.GetComponent<SpriteRenderer>().color = new Color(255/255f, 235/255f, 0f,1f);
     }
 }
