@@ -15,6 +15,7 @@ public class PlayerControl : MonoBehaviour
     public HealthBar healthBar;
     public SpriteManager spriteManager;
     public int coinCount = 0;
+    public int changeEraProgress = 0;
     public enum PlayerType{
         Medieval,
         Cyberpunk
