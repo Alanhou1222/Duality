@@ -10,7 +10,7 @@ public class EnemyProjectile : MonoBehaviour
         Medieval,
         Cyberpunk
     }
-    private float speed = 8f;
+    private float speed = 4f;
 
     private Transform player;
     private Vector2 target;
@@ -68,12 +68,22 @@ public class EnemyProjectile : MonoBehaviour
             collision.gameObject.GetComponent<PlayerControl>().TakeDamage((int)UnityEngine.Random.Range(5f, 10f));
         }
 
-        if (collision.gameObject.tag != "Enemy")
+        if ((collision.gameObject.tag == "Enemy" && !collision.gameObject.GetComponent<Enemy>().getIsSameTypeAsPlayer()) ||
+            (collision.gameObject.tag == "Projectile"))
+        {
+            
+        }
+        else
         {
             Debug.Log("Destroy enemy projectile");
             DestroyProjectile();
         }
         
+    }
+
+    public void SetSpeed(float actualSpeed)
+    {
+        speed = actualSpeed;
     }
 
     private void DestroyProjectile()

@@ -279,7 +279,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8504641541083315514, guid: a888d7471e04f4f719815f66debd3087, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a888d7471e04f4f719815f66debd3087, type: 3}
@@ -351,6 +351,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8504641541083315513, guid: a888d7471e04f4f719815f66debd3087, type: 3}
+      propertyPath: aggro
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8504641541083315513, guid: a888d7471e04f4f719815f66debd3087, type: 3}
+      propertyPath: distance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8504641541083315513, guid: a888d7471e04f4f719815f66debd3087, type: 3}
       propertyPath: allySpeed
       value: 8
       objectReference: {fileID: 0}
@@ -360,7 +368,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8504641541083315513, guid: a888d7471e04f4f719815f66debd3087, type: 3}
       propertyPath: enemySpeed
-      value: 5.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8504641541083315513, guid: a888d7471e04f4f719815f66debd3087, type: 3}
       propertyPath: allyRetreatDistance
@@ -372,15 +380,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8504641541083315513, guid: a888d7471e04f4f719815f66debd3087, type: 3}
       propertyPath: enemyRetreatDistance
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8504641541083315513, guid: a888d7471e04f4f719815f66debd3087, type: 3}
       propertyPath: enemyStoppingDistance
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8504641541083315513, guid: a888d7471e04f4f719815f66debd3087, type: 3}
       propertyPath: startTimeBetweenShots
-      value: 2
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 8504641541083315514, guid: a888d7471e04f4f719815f66debd3087, type: 3}
       propertyPath: m_Name
@@ -1079,6 +1087,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8504641541083315513, guid: a888d7471e04f4f719815f66debd3087, type: 3}
+      propertyPath: aggro
+      value: 0.216
+      objectReference: {fileID: 0}
+    - target: {fileID: 8504641541083315513, guid: a888d7471e04f4f719815f66debd3087, type: 3}
+      propertyPath: distance
+      value: 0.228
+      objectReference: {fileID: 0}
+    - target: {fileID: 8504641541083315513, guid: a888d7471e04f4f719815f66debd3087, type: 3}
       propertyPath: allySpeed
       value: 8
       objectReference: {fileID: 0}
@@ -1100,7 +1116,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8504641541083315514, guid: a888d7471e04f4f719815f66debd3087, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a888d7471e04f4f719815f66debd3087, type: 3}
@@ -1397,6 +1413,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8504641541083315513, guid: a888d7471e04f4f719815f66debd3087, type: 3}
+      propertyPath: aggro
+      value: 0.747
+      objectReference: {fileID: 0}
+    - target: {fileID: 8504641541083315513, guid: a888d7471e04f4f719815f66debd3087, type: 3}
+      propertyPath: distance
+      value: 0.752
+      objectReference: {fileID: 0}
+    - target: {fileID: 8504641541083315513, guid: a888d7471e04f4f719815f66debd3087, type: 3}
       propertyPath: allySpeed
       value: 8
       objectReference: {fileID: 0}
@@ -1422,7 +1446,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8504641541083315514, guid: a888d7471e04f4f719815f66debd3087, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9221815389366778549, guid: a888d7471e04f4f719815f66debd3087, type: 3}
