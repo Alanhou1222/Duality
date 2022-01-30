@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class playerProjectile : MonoBehaviour
 {
-    public playerControl controller;
+    public PlayerControl controller;
     public SpriteRenderer spriteRenderer;
     public Sprite redArrow;
     public Sprite blueArrow;
@@ -18,9 +18,9 @@ public class playerProjectile : MonoBehaviour
     void Start() {
         transform.localScale = new Vector3(4,4,4);
         transform.eulerAngles = transform.eulerAngles + new Vector3(0,0,-45);
-        controller = GameObject.Find("Player").GetComponent(typeof(playerControl)) as playerControl;
-        if(controller.era == playerControl.playerType.medieval){
-            if(controller.team == playerControl.playerTeam.red){
+        controller = GameObject.Find("Player").GetComponent(typeof(PlayerControl)) as PlayerControl;
+        if(controller.era == PlayerControl.PlayerType.Medieval){
+            if(controller.team == PlayerControl.PlayerTeam.Red){
                 spriteRenderer.sprite = redArrow;
             }
             else {
@@ -29,7 +29,7 @@ public class playerProjectile : MonoBehaviour
             Destroy(gameObject,2f);
         }
         else{
-            if(controller.team == playerControl.playerTeam.red){
+            if(controller.team == PlayerControl.PlayerTeam.Red){
                 spriteRenderer.sprite = redLaser;
             }
             else {

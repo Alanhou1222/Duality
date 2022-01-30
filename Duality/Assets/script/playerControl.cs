@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playerControl : MonoBehaviour
+public class PlayerControl : MonoBehaviour
 {
     public int maxHealth = 100;
     public int currentHealth;
@@ -12,24 +12,24 @@ public class playerControl : MonoBehaviour
     public Sprite redCybe;
     public Sprite blueCybe;
     public HealthBar healthBar;
-    public enum playerType{
-        medieval,
-        cyberpunk
+    public enum PlayerType{
+        Medieval,
+        Cyberpunk
     }
-    public enum playerTeam{
-        red,
-        blue
+    public enum PlayerTeam{
+        Red,
+        Blue
     }
-    public playerType era;
-    public playerTeam team;
+    public PlayerType era;
+    public PlayerTeam team;
     void Start(){
         currentHealth = maxHealth;
         healthBar.SetHealth(maxHealth);
     }
 
     void Update() {
-        if(era == playerType.medieval){
-            if(team == playerTeam.red){
+        if(era == PlayerType.Medieval){
+            if(team == PlayerTeam.Red){
                 spriteRenderer.sprite = redMed;
             }
             else {
@@ -37,7 +37,7 @@ public class playerControl : MonoBehaviour
             }
         }
         else{
-            if(team == playerTeam.red){
+            if(team == PlayerTeam.Red){
                 spriteRenderer.sprite = redCybe;
             }
             else {
