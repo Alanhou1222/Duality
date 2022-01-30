@@ -12,6 +12,8 @@ public class shooting : MonoBehaviour
     public Transform firePoint;
     public GameObject bulletPrefab;
     public PlayerControl controller;
+    Vector2 mousePos;
+    public Camera cam;
   
 
     public float bulletForce = 20f;
@@ -36,15 +38,20 @@ public class shooting : MonoBehaviour
     
     void Shoot(){
         GameObject bullet;
+        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 lookDir = mousePos - new Vector2(transform.position[0], transform.position[1]);
+        float angle = Mathf.Atan2(lookDir.y,lookDir.x) * Mathf.Rad2Deg - 90f;
+        Quaternion direction = Quaternion.Euler(0, 0, angle);
         if(controller.era == PlayerControl.PlayerType.Medieval) {
             firePoint.localPosition = new Vector3(0.05f,0.15f,0);
-            bullet = Instantiate(bulletPrefab, firePoint.position, transform.rotation);
+            bullet = Instantiate(bulletPrefab, firePoint.position, direction);
         }
         else {
             firePoint.localPosition = new Vector3(0.05f,0.2f,0);
-            bullet = Instantiate(bulletPrefab, firePoint.position, transform.rotation);
+            bullet = Instantiate(bulletPrefab, firePoint.position, direction);
         }
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        rb.AddForce(firePoint.up*bulletForce,ForceMode2D.Impulse);
+        Vector3 bulletDir = Vector3.Normalize(new Vector3(lookDir[0], lookDir[1],0));
+        rb.AddForce(bulletDir*bulletForce,ForceMode2D.Impulse);
     }
 }
