@@ -288,6 +288,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1198153155395449049, guid: a9af2fb09a3c26b438af3aaa379046a7, type: 3}
+      propertyPath: medCoin
+      value: 
+      objectReference: {fileID: 21300000, guid: 6c5b03060154db14c9e6f27c9fac819a, type: 3}
+    - target: {fileID: 1198153155395449049, guid: a9af2fb09a3c26b438af3aaa379046a7, type: 3}
+      propertyPath: midCoin
+      value: 
+      objectReference: {fileID: 21300000, guid: 6c5b03060154db14c9e6f27c9fac819a, type: 3}
+    - target: {fileID: 1198153155395449049, guid: a9af2fb09a3c26b438af3aaa379046a7, type: 3}
+      propertyPath: cybeCoin
+      value: 
+      objectReference: {fileID: 21300000, guid: e3b79019e2f829743b349c1b19836662, type: 3}
+    - target: {fileID: 1198153155395449049, guid: a9af2fb09a3c26b438af3aaa379046a7, type: 3}
+      propertyPath: mainCharacter
+      value: 
+      objectReference: {fileID: 21300000, guid: e952cda984a8a154cbf50bab23a60eb9, type: 3}
+    - target: {fileID: 1198153155395449049, guid: a9af2fb09a3c26b438af3aaa379046a7, type: 3}
+      propertyPath: cybeMainCharacter
+      value: 
+      objectReference: {fileID: 21300000, guid: e952cda984a8a154cbf50bab23a60eb9, type: 3}
     - target: {fileID: 6285166618441661980, guid: a9af2fb09a3c26b438af3aaa379046a7, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -349,6 +369,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51589d4827dbe35459d4a2d34bfac6ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &703188258
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 703188260}
+  - component: {fileID: 703188259}
+  m_Layer: 0
+  m_Name: CoinManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &703188259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 703188258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59ce120d8c454404c939f9f418b8ffc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinPrefab: {fileID: 2361598447588707705, guid: 9f766dd175e01fb43af02af93220252b, type: 3}
+  player: {fileID: 894179957973184082}
+--- !u!4 &703188260
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 703188258}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.798535, y: -0.27730507, z: -0.029495992}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &773845759
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -500,7 +566,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.176131, y: 1}
+    m_SensorSize: {x: 2.1145332, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -811,6 +877,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2491217509418326236, guid: dfe26664ede35374bb6d65a78dae9993, type: 3}
+      propertyPath: era
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2491217509418326236, guid: dfe26664ede35374bb6d65a78dae9993, type: 3}
       propertyPath: spriteManager
       value: 

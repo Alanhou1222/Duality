@@ -13,6 +13,7 @@ public class PlayerControl : MonoBehaviour
     public Sprite blueCybe;
     public HealthBar healthBar;
     public SpriteManager spriteManager;
+    public int coinCount = 0;
     public enum PlayerType{
         Medieval,
         Cyberpunk
@@ -23,28 +24,30 @@ public class PlayerControl : MonoBehaviour
     };
     public PlayerType era;
     public PlayerTeam team;
+    public CoinManager cm;
     void Start(){
         currentHealth = maxHealth;
         spriteManager = GameObject.Find("SpriteManager").GetComponent(typeof(SpriteManager)) as SpriteManager;
+        cm = GameObject.Find("CoinManager").GetComponent(typeof(CoinManager)) as CoinManager;
         healthBar.SetHealth(maxHealth);
     }
 
     void Update() {
-        if(era == PlayerType.Medieval){
-            if(team == PlayerTeam.Red){
-                spriteRenderer.sprite = spriteManager.redMed;
+        if(coinCount == 3) {
+            if(era == PlayerType.Medieval) {
+                era = PlayerType.Cyberpunk;
             }
             else {
-                spriteRenderer.sprite = spriteManager.blueMed;
+                era = PlayerType.Medieval;
             }
+            coinCount = 0;
+            cm.GenerateCoins(3);
+        }
+        if(era == PlayerType.Medieval){
+            spriteRenderer.sprite = spriteManager.redMed;
         }
         else{
-            if(team == PlayerTeam.Red){
-                spriteRenderer.sprite = spriteManager.redCybe;
-            }
-            else {
-                spriteRenderer.sprite = spriteManager.blueCybe;
-            }
+            spriteRenderer.sprite = spriteManager.cybeMainCharacter;
         }
         if(Input.GetKeyDown(KeyCode.Space)){
             TakeDamage(20);
