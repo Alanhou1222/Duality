@@ -25,29 +25,27 @@ public class playerMovement : MonoBehaviour
         Normal,
         DodeRollSliding
     }
-
-    // private bool CanMove(Vector3 dir, float distance){
-    //     return Physics2D.Raycast(transform.position, dir, distance).collider == null;
-    // }
-
-    // private bool TryMove(Vector3 baseMoveDir, float distance){
-    //     Vector3 moveDir = baseMoveDir;
-    //     bool canMove = CanMove(moveDir, distance);
-    //     if(!canMove){
-    //         moveDir = new Vector3(baseMoveDir.x, 0f).normalized;
-    //         canMove = moveDir.x != 0f && CanMove(moveDir, distance);
-    //         if(!canMove){
-    //             moveDir = new Vector3(0f, baseMoveDir.y).normalized;
-    //             canMove = moveDir.y != 0f && CanMove(moveDir, distance);
-    //         }
-    //     }
-    //     else{
-    //          = moveDir;
-    //         transform.position += moveDir*distance;
-    //         return true;
-    //     }
-    //     return false;
-    // }
+    bool CanMove(Vector3 dir, float distance){
+        return Physics2D.Raycast(transform.position, dir, distance).collider == null;
+    }
+    bool TryMove(Vector3 baseMoveDir, float distance){
+        Vector3 moveDir = baseMoveDir;
+        bool canMove = CanMove(moveDir, distance);
+        if(!canMove){
+            moveDir = new Vector3(baseMoveDir.x,0f).normalized;
+            if(!canMove){
+                moveDir = new Vector3(0f,baseMoveDir.y).normalized;
+                canMove = moveDir.y != 0f && CanMove(moveDir,distance);
+            }
+        }
+        if(canMove){
+            transform.position += moveDir * distance;
+            return true;
+        } else{
+            return false;
+        }
+    }
+    
     void Start() {
         state = State.Normal;
         rollingBar.GetComponent<SpriteRenderer>().color = new Color(255/255f, 235/255f, 0f,1f);
@@ -112,6 +110,7 @@ public class playerMovement : MonoBehaviour
         }
     }
     void HandleDodgeRollSliding(){
+        TryMove(slideDir, slideSpeed * Time.deltaTime);
         transform.position += slideDir * slideSpeed * Time.deltaTime;
         slideSpeed -= slideSpeed * 5f * Time.deltaTime;
         if(slideSpeed<5f){
