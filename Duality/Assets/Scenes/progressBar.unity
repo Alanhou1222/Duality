@@ -406,6 +406,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 894179957729660090, guid: 2b229874e59f24afabfee794c2f14fa6, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 894179957729660090, guid: 2b229874e59f24afabfee794c2f14fa6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -368.5
       objectReference: {fileID: 0}
@@ -882,33 +886,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   progressBarImage: {fileID: 2092421617}
   progressBarImageBackground: {fileID: 724841620}
---- !u!1 &2116042611 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 894179957729660070, guid: 2b229874e59f24afabfee794c2f14fa6, type: 3}
-  m_PrefabInstance: {fileID: 948518715}
-  m_PrefabAsset: {fileID: 0}
 --- !u!212 &2116042617 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 894179957729660091, guid: 2b229874e59f24afabfee794c2f14fa6, type: 3}
   m_PrefabInstance: {fileID: 948518715}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &2116042618
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2116042611}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a8ac345ddc373244eb6de46b68c1ce16, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
