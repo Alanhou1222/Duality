@@ -28,7 +28,7 @@ public class EnemyHealthBar : MonoBehaviour
         SwitchSide(Enemy.EnemyType.Cyberpunk);
     }
 
-    void SwitchSide(Enemy.EnemyType enemyType){
+    public void SwitchSide(Enemy.EnemyType enemyType){
         if(enemyType == Enemy.EnemyType.Medieval){
             fillSprite.color = new Color(0.745f, 0.251f, 0.251f,1f);
             iconSprite.sprite = bloodDrop;

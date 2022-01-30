@@ -32,13 +32,13 @@ public class Enemy : MonoBehaviour
     [Header("Projectile")]
     [SerializeField] GameObject enemyProjectile;
     [SerializeField] GameObject allyProjectile;
+    [SerializeField] GameObject shootPoint;
 
     private float timeBetweenShots;
     [SerializeField] float startTimeBetweenShots;
 
     [Header("Health")]
-    [SerializeField] GameObject medievalHealthBar;
-    [SerializeField] GameObject cyberHealthBar;
+    EnemyHealthBar healthBar;
     [SerializeField] float enemyMaxHealth = 100f;
     [SerializeField] float enemyCurrentHealth = 100f;
 
@@ -55,6 +55,8 @@ public class Enemy : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
+        healthBar = GetComponentInChildren<EnemyHealthBar>();
+
         timeBetweenShots = startTimeBetweenShots;
     }
 
@@ -66,6 +68,8 @@ public class Enemy : MonoBehaviour
         playerType = 1;
 
         // Set enemyType
+        healthBar.SwitchSide(enemyType);
+        healthBar.SetHealth(enemyCurrentHealth);
         if (enemyType == EnemyType.Medieval)
         {
 
@@ -135,12 +139,12 @@ public class Enemy : MonoBehaviour
 
             if (isSameTypeAsPlayer)
             {
-                GameObject projectile = Instantiate(allyProjectile, transform.position, Quaternion.identity);
+                GameObject projectile = Instantiate(allyProjectile, shootPoint.transform.position, Quaternion.identity);
                 projectile.GetComponent<Projectile>().setTarget(enemy.transform);
             }
             else
             {
-                Instantiate(enemyProjectile, transform.position, Quaternion.identity);
+                Instantiate(enemyProjectile, shootPoint.transform.position, Quaternion.identity);
             }
 
             timeBetweenShots = startTimeBetweenShots;
