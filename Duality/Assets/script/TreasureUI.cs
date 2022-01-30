@@ -1,15 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
+using TMPro;
 
 public class TreasureUI : MonoBehaviour
 {
     public Transform player;
     public Transform box;
     public GameObject pressEGuide;
+    public GameObject strength;
+    public GameObject speed;
+    public GameObject shield;
+    public string powerUpString = "";
+    public TextMeshProUGUI powerUpMessage;
     public float minDistance = 3f;
     public GameObject BoxUI;
-    public string powerup;
     // Update is called once per frame
     void Update() {
         if ((player.position - box.position).magnitude <= minDistance) {
@@ -17,7 +23,6 @@ public class TreasureUI : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E)) {
                 Open();
                 Powerup();
-                Debug.Log(powerup);
             }
         } else {
           pressEGuide.SetActive(false);
@@ -30,16 +35,25 @@ public class TreasureUI : MonoBehaviour
     }
 
     void Powerup() {
-        switch(Random.Range(0, 2)) {
+        switch(Random.Range(0, 3)) {
           case 0:
-              powerup = "shield";
+              strength.SetActive(true);
+              powerUpString = "Your strength is upgraded!";
               break;
           case 1:
-              powerup = "speed";
+              speed.SetActive(true);
+              powerUpString = "Your speed is upgraded!";
               break;
           case 2:
-              powerup = "strength";
+              shield.SetActive(true);
+              powerUpString = "Your shield is upgraded!";
               break;
         }
+        ShowMessage(powerUpString);
+    }
+
+    void ShowMessage(string message) {
+        powerUpMessage.text = message;
+        // powerUpMessage.SetActive(true);
     }
 }
