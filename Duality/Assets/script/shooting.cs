@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Audio;
 using UnityEngine;
 
 public class shooting : MonoBehaviour
@@ -12,6 +13,7 @@ public class shooting : MonoBehaviour
     public Transform firePoint;
     public GameObject bulletPrefab;
     public PlayerControl controller;
+    public AudioSource shootingSound;
     Vector2 mousePos;
     public Camera cam;
   
@@ -37,6 +39,7 @@ public class shooting : MonoBehaviour
     }
     
     void Shoot(){
+        shootingSound.Play();
         GameObject bullet;
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
         Vector2 lookDir = mousePos - new Vector2(transform.position[0], transform.position[1]);
