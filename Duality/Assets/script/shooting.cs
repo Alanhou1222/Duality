@@ -6,7 +6,7 @@ using UnityEngine;
 public class shooting : MonoBehaviour
 {
     //The interval you want your player to be able to fire.
-    float fireRate = 0.5f;
+    float fireRate = 0.3f;
  
     //The actual time the player will be able to fire.
     private float nextFire;
@@ -18,7 +18,7 @@ public class shooting : MonoBehaviour
     public Camera cam;
   
 
-    public float bulletForce = 20f;
+    public float bulletForce = 30f;
     // Update is called once per frame
     void Start() 
     {
@@ -26,12 +26,6 @@ public class shooting : MonoBehaviour
     }
     void Update()
     {
-        if(controller.era == PlayerControl.PlayerType.Medieval) {
-            bulletForce = 12f;
-        }
-        else {
-            bulletForce = 30f;
-        }
         if(Input.GetButtonDown("Fire1") && Time.time > nextFire){
             Shoot();
             nextFire = Time.time + fireRate;
