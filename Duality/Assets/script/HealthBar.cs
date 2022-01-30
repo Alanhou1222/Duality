@@ -42,4 +42,9 @@ public class HealthBar : MonoBehaviour
         Dead.SetActive(true);
         Time.timeScale = 0;
     }
+
+    private void Start()
+    {
+        SetHealth(LevelManager.Instance.playerHealth);
+    }
 }

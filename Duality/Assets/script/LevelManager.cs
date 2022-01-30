@@ -5,10 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
+
+    public static LevelManager Instance { get; private set; } // static singleton
+
+    public int playerHealth = 0;
+
     // Start is called before the first frame update
     void Start()
     {
         DontDestroyOnLoad(this);
+        if (Instance == null) { Instance = this; }
     }
 
     public void LoadToLevel1()
@@ -44,6 +50,11 @@ public class LevelManager : MonoBehaviour
     public void LoadToMainMenu()
     {
         SceneManager.LoadScene("Main Menu");
+    }
+
+    public void ChangeToNextLevel()
+    {
+        LoadToLevel2();
     }
 
     public void Quit()
