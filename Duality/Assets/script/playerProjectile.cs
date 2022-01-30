@@ -16,7 +16,7 @@ public class playerProjectile : MonoBehaviour
     }
 
     void Start() {
-        transform.localScale = new Vector3(1,1,1);
+        transform.localScale = new Vector3(2,2,2);
         transform.eulerAngles = transform.eulerAngles + new Vector3(0,0,-45);
         controller = GameObject.Find("Player").GetComponent(typeof(PlayerControl)) as PlayerControl;
         if(controller.era == PlayerControl.PlayerType.Medieval){
