@@ -16,6 +16,8 @@ public class Projectile : MonoBehaviour
     SpriteManager sm;
     PlayerControl controller;
 
+    private float timer = 3f;
+
     float allyAttack = 3f;
 
     // Start is called before the first frame update
@@ -38,7 +40,11 @@ public class Projectile : MonoBehaviour
         transform.position += normalizedDirection * speed * Time.deltaTime;
         // transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
 
-        if (transform.position.x == target.x && transform.position.y == target.y)
+        if (timer > 0)
+        {
+            timer -= Time.deltaTime;
+        }
+        else
         {
             DestroyProjectile();
         }
@@ -46,13 +52,12 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.gameObject.tag + "  ally");
         if (collision.gameObject.tag == "Enemy" && !collision.gameObject.GetComponent<Enemy>().getIsSameTypeAsPlayer()) {
-            Debug.Log("Destroy ally projectile");
             collision.gameObject.GetComponent<Enemy>().dealDamage(allyAttack);
-            DestroyProjectile();
+            
         }
-        
+
+        DestroyProjectile();
     }
 
     private void DestroyProjectile()
