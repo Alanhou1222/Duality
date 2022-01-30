@@ -11,18 +11,18 @@ public class shooting : MonoBehaviour
     private float nextFire;
     public Transform firePoint;
     public GameObject bulletPrefab;
-    public playerControl controller;
+    public PlayerControl controller;
   
 
     public float bulletForce = 20f;
     // Update is called once per frame
     void Start() 
     {
-        controller = GameObject.Find("Player").GetComponent(typeof(playerControl)) as playerControl;    
+        controller = GameObject.Find("Player").GetComponent(typeof(PlayerControl)) as PlayerControl;    
     }
     void Update()
     {
-        if(controller.era == playerControl.playerType.medieval) {
+        if(controller.era == PlayerControl.PlayerType.Medieval) {
             bulletForce = 12f;
         }
         else {
@@ -36,7 +36,7 @@ public class shooting : MonoBehaviour
     
     void Shoot(){
         GameObject bullet;
-        if(controller.era == playerControl.playerType.medieval) {
+        if(controller.era == PlayerControl.PlayerType.Medieval) {
             firePoint.localPosition = new Vector3(0.05f,0.15f,0);
             bullet = Instantiate(bulletPrefab, firePoint.position, transform.rotation);
         }

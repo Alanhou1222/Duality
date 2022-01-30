@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 894179957729660070}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 7, y: 7, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 894179958850299521}
@@ -183,6 +183,10 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   spriteRenderer: {fileID: 0}
+  redMed: {fileID: 0}
+  blueMed: {fileID: 0}
+  redCybe: {fileID: 0}
+  blueCybe: {fileID: 0}
   healthBar: {fileID: 0}
   era: 0
   team: 0
