@@ -10,7 +10,10 @@ public class Enemy : MonoBehaviour
         Medieval,
         Cyberpunk
     }
-
+    public enum PlayerTeam{
+        Red,
+        Blue
+    }
     [Header("Ally Speed")]
     // The attributes for an ally
     [SerializeField] float allySpeed = 10f;
@@ -42,6 +45,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] float enemyMaxHealth = 100f;
     [SerializeField] float enemyCurrentHealth = 100f;
 
+    [SerializeField] SpriteRenderer spriteRenderer; 
+    private SpriteManager spriteManager;
+
     Transform player;
 
     // Get all enemies
@@ -50,11 +56,16 @@ public class Enemy : MonoBehaviour
     // Target enemy
     GameObject enemy;
 
+    // Player Control
+    PlayerControl controller;
+
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
-
+        spriteManager = GameObject.Find("SpriteManager").GetComponent(typeof(SpriteManager)) as SpriteManager;   
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        controller = GameObject.Find("Player").GetComponent(typeof(PlayerControl)) as PlayerControl;
         healthBar = GetComponentInChildren<EnemyHealthBar>();
 
         timeBetweenShots = startTimeBetweenShots;
@@ -65,26 +76,30 @@ public class Enemy : MonoBehaviour
     {
 
         // Get player's type
-        playerType = 1;
-
+        if(controller.era == PlayerControl.PlayerType.Medieval) {
+            playerType = 0;
+        }
+        else {
+            playerType = 1;
+        }
         // Set enemyType
         healthBar.SwitchSide(enemyType);
         healthBar.SetHealth(enemyCurrentHealth);
-        if (enemyType == EnemyType.Medieval)
-        {
 
-        }
-        else
-        {
-
-        }
 
         // if playerType is the same as enemyType, they are allies
         // otherwise they are enemies
         if ((playerType == 0 && enemyType == EnemyType.Medieval) || (playerType == 1 && enemyType == EnemyType.Cyberpunk))
         {
             isSameTypeAsPlayer = true;
-
+            if (enemyType == EnemyType.Medieval)
+            {
+                spriteRenderer.sprite = spriteManager.blueMed;
+            }
+            else
+            {
+                spriteRenderer.sprite = spriteManager.blueCybe;
+            }
             allEnemies = GameObject.FindGameObjectsWithTag("Enemy");
             enemy = getClosestEnemy(allEnemies);
 
@@ -111,13 +126,21 @@ public class Enemy : MonoBehaviour
                 {
                     transform.position = Vector2.MoveTowards(transform.position, enemy.transform.position, -allySpeed * Time.deltaTime);
                 }
+                LookAt2D(transform, enemy.transform.position);
             }
             
         }
         else
         {
             isSameTypeAsPlayer = false;
-
+            if (enemyType == EnemyType.Medieval)
+            {
+                spriteRenderer.sprite = spriteManager.redMed;
+            }
+            else
+            {
+                spriteRenderer.sprite = spriteManager.redCybe;
+            }
             if (Vector2.Distance(transform.position, player.position) > enemyStoppingDistance)
             {
                 transform.position = Vector2.MoveTowards(transform.position, player.position, enemySpeed * Time.deltaTime);
@@ -131,6 +154,7 @@ public class Enemy : MonoBehaviour
             {
                 transform.position = Vector2.MoveTowards(transform.position, player.position, -enemySpeed * Time.deltaTime);
             }
+            LookAt2D(transform, player.transform.position);
 
         }
 
@@ -212,6 +236,20 @@ public class Enemy : MonoBehaviour
     public bool getIsSameTypeAsPlayer()
     {
         return isSameTypeAsPlayer;
+    }
+
+    public void LookAt2D(Transform transform, Vector2 target)
+    {
+        Vector2 current = transform.position;
+        if(current[0] > target[0]){
+            transform.rotation = Quaternion.AngleAxis(90, Vector3.forward);
+            transform.localScale = new Vector3(6,6,1);
+        }
+        else {
+            transform.rotation = Quaternion.AngleAxis(270, Vector3.forward);
+            transform.localScale = new Vector3(-6,6,1);
+        }
+        
     }
 
     public void dealDamage(float damage)

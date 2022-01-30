@@ -16,15 +16,18 @@ public class EnemyHealthBar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        localScale = transform.localScale;
+        localScale = new Vector3(0.15f,0.15f,1);
+        transform.localScale = localScale;
+        transform.rotation = Quaternion.AngleAxis(270, Vector3.forward);
     }
     public void SetHealth(float health){
-       localScale.x = health/100*1.67f;
+       localScale.x = health/100*0.15f;
        transform.localScale = localScale;
     } 
 
     void Update() {
         SetHealth(100);
+        transform.localPosition = new Vector2(0.2f,0.1f);
         SwitchSide(Enemy.EnemyType.Cyberpunk);
     }
 
