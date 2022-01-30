@@ -38,7 +38,7 @@ public class EnemyProjectile : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-
+            // player lose health
         }
         DestroyProjectile();
     }

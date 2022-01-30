@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 8311117130070868449}
   - component: {fileID: 2592123927133185985}
   - component: {fileID: 4462043577100550992}
-  - component: {fileID: -8483784197805085871}
   - component: {fileID: 5784006664329326204}
+  - component: {fileID: 818872439}
   m_Layer: 0
   m_Name: playerProjectile
   m_TagString: Untagged
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5dfe67ec2ed9b448189a6dc5a98eadad, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -108,22 +108,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &-8483784197805085871
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5030745592102433053}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
 --- !u!114 &5784006664329326204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,3 +120,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2467020c718594484bcb834fdccf6fe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controller: {fileID: 0}
+  spriteRenderer: {fileID: 2592123927133185985}
+  redArrow: {fileID: 21300000, guid: d3ab108e67b22084fbeea71f0eeb378c, type: 3}
+  blueArrow: {fileID: 21300000, guid: 3e3ae0ea0044dee4e8b7a393011b8d76, type: 3}
+  redLaser: {fileID: 21300000, guid: 8d40e2fe0664d864c883e0d15e502a6c, type: 3}
+  blueLaser: {fileID: 21300000, guid: be83fc4629f3c43479fe7239b5d61ba9, type: 3}
+--- !u!60 &818872439
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5030745592102433053}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.13, y: 0.19}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.116692014, y: 0.11496568}
+      - {x: -0.09311675, y: 0.051204015}
+      - {x: 0.05355028, y: -0.09269318}
+      - {x: 0.07592688, y: -0.114641994}
+      - {x: 0.082739115, y: -0.097702324}
+      - {x: 0.09888919, y: -0.08975235}
+      - {x: 0.11793282, y: -0.07680967}
+      - {x: -0.057913188, y: 0.096407585}

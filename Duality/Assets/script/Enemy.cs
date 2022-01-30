@@ -64,6 +64,12 @@ public class Enemy : MonoBehaviour
         // Get player's type
         playerType = 1;
 
+        // Set enemyType
+        if (enemyType == EnemyType.Medieval)
+        {
+
+        }
+
         // if playerType is the same as enemyType, they are allies
         // otherwise they are enemies
         if ((playerType == 0 && enemyType == EnemyType.Medieval) || (playerType == 1 && enemyType == EnemyType.Cyberpunk))
