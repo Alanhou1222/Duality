@@ -520,7 +520,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1410487743530827261, guid: 7e53e61dea7144ba0a8d959d447d2771, type: 3}
   m_PrefabInstance: {fileID: 400146165}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 400146166}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 961e6192ca860438bacae72c3095347d, type: 3}
@@ -955,6 +955,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e53e61dea7144ba0a8d959d447d2771, type: 3}
+--- !u!1 &400146166 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2304660820922093103, guid: 7e53e61dea7144ba0a8d959d447d2771, type: 3}
+  m_PrefabInstance: {fileID: 400146165}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &427381846
 GameObject:
   m_ObjectHideFlags: 0
@@ -998,7 +1003,7 @@ Transform:
   m_Children:
   - {fileID: 1694422508}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &442100530
 PrefabInstance:
@@ -52864,6 +52869,67 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7201420594268063655, guid: b094591a3400a4135ba812613a627b37, type: 3}
   m_PrefabInstance: {fileID: 164854773}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1502476313
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6887980742721682860, guid: ac84e181f1aab48de8b38be57c9a6253, type: 3}
+      propertyPath: m_Name
+      value: Gameplay Music
+      objectReference: {fileID: 0}
+    - target: {fileID: 6887980742721682861, guid: ac84e181f1aab48de8b38be57c9a6253, type: 3}
+      propertyPath: m_RootOrder
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 6887980742721682861, guid: ac84e181f1aab48de8b38be57c9a6253, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6887980742721682861, guid: ac84e181f1aab48de8b38be57c9a6253, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6887980742721682861, guid: ac84e181f1aab48de8b38be57c9a6253, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6887980742721682861, guid: ac84e181f1aab48de8b38be57c9a6253, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6887980742721682861, guid: ac84e181f1aab48de8b38be57c9a6253, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6887980742721682861, guid: ac84e181f1aab48de8b38be57c9a6253, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6887980742721682861, guid: ac84e181f1aab48de8b38be57c9a6253, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6887980742721682861, guid: ac84e181f1aab48de8b38be57c9a6253, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6887980742721682861, guid: ac84e181f1aab48de8b38be57c9a6253, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6887980742721682861, guid: ac84e181f1aab48de8b38be57c9a6253, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6887980742721682863, guid: ac84e181f1aab48de8b38be57c9a6253, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 400146166}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ac84e181f1aab48de8b38be57c9a6253, type: 3}
 --- !u!1001 &1540034820
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -122885,7 +122951,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7785467, y: 1}
+    m_SensorSize: {x: 1.7763385, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
